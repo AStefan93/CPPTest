@@ -1,4 +1,0 @@
-- name: Setup C++ environment
-  # You may pin to the exact commit or the version.
-  # uses: kurocha/setup-cpp@ef637353b9bec350da9c1088b73d2217d2441696
-  uses: kurocha/setup-cpp@v1
