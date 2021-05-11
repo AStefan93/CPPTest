@@ -11,11 +11,12 @@
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
-		"terminal.integrated.shell.linux": null
+		"terminal.integrated.defaultProfile.linux": null
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": ["bazelbuild.vscode-bazel" "ms-vscode.cpptools" "jeff-hykin.better-cpp-syntax" "cschlosser.doxdocgen" "github.vscode-pull-request-github" "ms-vscode.cpptools-themes"]
+	"extensions": ["bazelbuild.vscode-bazel","ms-vscode.cpptools","jeff-hykin.better-cpp-syntax","cschlosser.doxdocgen",
+		"github.vscode-pull-request-github","ms-vscode.cpptools-themes"]
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
