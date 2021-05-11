@@ -1,5 +1,7 @@
 # Dockerfile contents:
-FROM ubuntu:20.04
+FROM ubuntu:latest
 ENV DEBIAN_FRONTEND="noninteractive" TZ="America/Toronto"
-RUN apt-get update
-RUN apt-get upgrade
+RUN apt-get update && apt-get -y install build-essential cmake cppcheck valgrind clang lldb llvm gdb git \
+    && apt-get -y install nodejs npm \
+    && npm install -g @bazel/bazelisk \
+    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
