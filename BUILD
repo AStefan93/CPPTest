@@ -1,7 +1,7 @@
 cc_binary(
-    name = "main-package",
+    name = "main",
     srcs = ["main.cpp"],
-    #deps = [
-    #    "//src:test-package",
-    #],
+    deps = [
+        "//src:test",
+    ],
 )

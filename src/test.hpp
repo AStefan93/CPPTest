@@ -11,4 +11,9 @@ class foo{
         double _y;
 };
 
+struct foobar{
+    double x{0};
+    double y{0};
+};
+
 #endif // TEST_HPP

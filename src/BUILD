@@ -1,6 +1,9 @@
 cc_library(
-    name = "test-package",
+    name = "test",
     srcs = ["test.cpp"],
-    hdrs = ["include/test.hpp"],
-    visibility = ["//:main-package"],
+    hdrs = ["test.hpp"],
+    deps = [
+        "//src/array:array",
+    ],
+    visibility = ["//:__pkg__"],
 )
