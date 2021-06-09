@@ -1,3 +1,5 @@
+#ifndef TEST_HPP
+#define TEST_HPP
 
 class foo{
     public:
@@ -8,3 +10,5 @@ class foo{
         double _x;
         double _y;
 };
+
+#endif // TEST_HPP
