@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "llvm-vs-code-extensions.vscode-clangd",
+        "bazelbuild.vscode-bazel",
+        "cschlosser.doxdocgen",
+        "jeff-hykin.better-cpp-syntax",
+        "eamodio.gitlens",
+        "xaver.clang-format",
+        "ms-vscode.cpptools",
+        "actboy168.tasks"
+    ]
+}

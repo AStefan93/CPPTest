@@ -1,7 +1,7 @@
 # Dockerfile contents:
 FROM ubuntu:latest
 ENV DEBIAN_FRONTEND="noninteractive" TZ="America/Toronto"
-RUN apt-get update && apt-get -y install build-essential cmake cppcheck valgrind clang lldb llvm gdb git \
+RUN apt-get update && apt-get -y install build-essential cppcheck valgrind clang clangd clang-tidy clang-format lldb llvm gdb git \
     && apt-get -y install nodejs npm \
     && npm install -g @bazel/bazelisk
     

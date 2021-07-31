@@ -2,4 +2,4 @@
 
 #include "array/array.hpp"
 
-double foo::product() const { return _x * _y; }
+double test::Foo::product() const { return _x * _y; }

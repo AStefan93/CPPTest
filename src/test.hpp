@@ -1,20 +1,22 @@
 #ifndef TEST_HPP
 #define TEST_HPP
 
-class foo {
+namespace test {
+class Foo {
  public:
-  foo() : _x{0}, _y{0} {};
-  foo(const double x, const double y) : _x{x}, _y{y} {};
-  double product() const;
+  Foo();
+  Foo(const double x, const double y) : m_x{x}, m_y{y} {};
+  auto product() const -> double;
 
  private:
-  double _x;
-  double _y;
+  double m_x{};
+  double m_y{};
 };
 
-struct foobar {
+struct foo_bar {
   double x{0};
   double y{0};
 };
+}  // namespace test
 
 #endif  // TEST_HPP
