@@ -10,9 +10,22 @@ void bar(const test::Foo& test_foo) {
 
 double foobar(const double x, const double /*unused*/) { return x; }
 
-class STUFF {
-  STUFF();
+class Stuff {
+  Stuff();
   //~STUFF();
+};
+
+class TestClass {
+  TestClass();
+  ~TestClass();
+  TestClass(const TestClass& test);
+  TestClass(const TestClass&& test);
+  TestClass& operator=(const TestClass& test);
+  TestClass& operator=(const TestClass&& test);
+
+ private:
+  double m_x;
+  double m_y;
 };
 
 int main() {
