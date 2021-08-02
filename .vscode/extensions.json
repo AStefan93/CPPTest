@@ -9,6 +9,7 @@
         "ms-vscode.cpptools",
         "actboy168.tasks",
         "vscode-icons-team.vscode-icons",
-        "tabnine.tabnine-vscode"
+        "tabnine.tabnine-vscode",
+        "github.vscode-pull-request-github"
     ]
 }

@@ -31,4 +31,4 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run tests
-        run: bazel test //src:test1
+        run: bazel test --test_output=all //src:test1
