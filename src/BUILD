@@ -7,3 +7,12 @@ cc_library(
     ],
     visibility = ["//:__pkg__"],
 )
+
+cc_test(
+    name = "test1",
+    srcs = ["test1.cpp"],
+    deps = [
+        "@googletest//:gtest_main",
+        "//src:test",
+    ]
+)

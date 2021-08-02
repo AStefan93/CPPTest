@@ -1,0 +1,36 @@
+{
+    "tasks": [
+        {
+            "type": "process",
+            "label": "Build Release",
+            "command": "bazel",
+            "args": [
+                "build",
+                "main",
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "process",
+            "label": "Build Debug",
+            "command": "bazel",
+            "args": [
+                "build",
+                "--config",
+                "debug",
+                "main",
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "test"
+        }
+    ],
+    "version": "2.0.0"
+}

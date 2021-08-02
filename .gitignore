@@ -34,3 +34,6 @@ bazel-bin
 bazel-out
 bazel-CPPTest
 bazel-testlogs
+
+#clang
+.clangd
