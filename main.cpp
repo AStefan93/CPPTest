@@ -33,7 +33,7 @@ int main() {
   constexpr auto x{6};
   constexpr auto yTestTest{5};
 
-  // const double STARTINGTestValue = 4;
+  const double STARTINGTestValue = 4;
 
   test::Foo test_foo{x, yTestTest};
   bar(test_foo);
