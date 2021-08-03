@@ -1,12 +1,8 @@
 #include <iostream>
 
-#include "src/test.hpp"
+#include "array/array.hpp"
 
 int const TEST_VARIABLE = 0;
-
-void bar(const test::Foo& test_foo) {
-  std::cout << test_foo.product() << std::endl;
-}
 
 double foobar(const double x, const double /*unused*/) { return x; }
 
@@ -35,8 +31,5 @@ int main() {
 
   const double STARTINGTestValue = 4;
 
-  test::Foo test_foo{x, yTestTest};
-  bar(test_foo);
-  // std::cout << test_foo_p->product() << std::endl;
   std::cout << "hello world" << std::endl;
 }
