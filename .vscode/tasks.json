@@ -6,7 +6,7 @@
             "command": "bazel",
             "args": [
                 "build",
-                "main",
+                "...",
             ],
             "problemMatcher": [
                 "$gcc"
@@ -24,12 +24,24 @@
                 "build",
                 "--config",
                 "debug",
-                "main",
+                "...",
             ],
             "problemMatcher": [
                 "$gcc"
             ],
-            "group": "test"
+            "group": "build"
+        },
+        {
+            "type": "process",
+            "label": "Clean",
+            "command": "bazel",
+            "args": [
+                "clean"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
         }
     ],
     "version": "2.0.0"

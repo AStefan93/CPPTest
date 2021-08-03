@@ -1,6 +1,6 @@
-#include <gtest/gtest.h>
+#include "array.hpp"
 
-#include "test.hpp"
+#include <gtest/gtest.h>
 
 namespace {
 // Demonstrate some basic assertions.

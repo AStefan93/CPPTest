@@ -27,8 +27,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Build
-        run: bazel build main
+        run: bazel build ...
 
       # Runs a set of commands using the runners shell
       - name: Run tests
-        run: bazel test --test_output=all //src:test1
+        run: bazel test --test_output=all ...
