@@ -11,9 +11,15 @@ class Array {
 
  public:
   Array() = default;
+  ~Array() = default;
   explicit Array(int size);
   int size() const;
   bool empty() const;
+
+  bool IsValidIndex(int index) const;
+
+  int &operator[](int index);
+  int operator[](int index) const;
 };
 
 #endif  // TEST_HPP
