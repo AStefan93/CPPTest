@@ -47,5 +47,6 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp"
-    }
+    },
+    "testMate.cpp.test.executables": "{build,Build,BUILD,out,Out,OUT,bazel-out}/**/*{test,Test,TEST}*",
 }
