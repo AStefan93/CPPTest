@@ -1,4 +1,3 @@
-build:debug -c dbg
-build:debug --javacopt="-g"
-build:debug --copt="-g"
-build:debug --strip="never"
+build --cxxopt="-std=c++17" --cxxopt="-g3" --cxxopt="-fsanitize=address" --linkopt="-fsanitize=address"
+
+build:debug --cxxopt="-std=c++17"
