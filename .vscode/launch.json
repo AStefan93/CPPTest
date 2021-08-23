@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bazel-bin/main",
+            "program": "${workspaceFolder}/bazel-bin/src/main",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
