@@ -6,6 +6,7 @@
 #include <stdexcept>
 
 namespace {
+// NOLINTNEXTLINE
 TEST(Array, WhenDefaultConstructorExpectEmptyArray) {
   using ::testing::IsEmpty;
   Array<int> empty_array{};

@@ -93,4 +93,4 @@ std::ostream &operator<<(std::ostream &os, const Array<T> &a) {
   return os;
 }
 
-#endif  // TEST_HPP
+#endif  // ARRAY_HPP

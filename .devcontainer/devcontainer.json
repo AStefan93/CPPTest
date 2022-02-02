@@ -21,7 +21,8 @@
 		"xaver.clang-format",
 		"ms-vscode.cpptools",
 		"actboy168.tasks",
-		"vscode-icons-team.vscode-icons"
+		"vscode-icons-team.vscode-icons",
+		"matepek.vscode-catch2-test-adapter"
 	]
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
