@@ -37,3 +37,5 @@ bazel-testlogs
 
 #clang
 .clangd
+compile_commands.json
+external

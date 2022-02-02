@@ -1,13 +1,9 @@
 {
     "tasks": [
         {
-            "type": "process",
+            "type": "shell",
             "label": "Build Release",
-            "command": "bazel",
-            "args": [
-                "build",
-                "...",
-            ],
+            "command": "bazel build ... && bazel run @hedron_compile_commands//:refresh_all",
             "problemMatcher": [
                 "$gcc"
             ],

@@ -21,8 +21,9 @@
 		"xaver.clang-format",
 		"ms-vscode.cpptools",
 		"actboy168.tasks",
-		"vscode-icons-team.vscode-icons"
-	]
+		"vscode-icons-team.vscode-icons",
+		"matepek.vscode-catch2-test-adapter"
+	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 	// Uncomment the next line to run commands after the container is created - for example installing curl.
@@ -32,5 +33,5 @@
 	// Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker.
 	// "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
 	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "vscode"
+	// "remoteUser": "${localEnv:$USER}"
 }

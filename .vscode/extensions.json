@@ -10,6 +10,7 @@
         "actboy168.tasks",
         "vscode-icons-team.vscode-icons",
         "tabnine.tabnine-vscode",
-        "github.vscode-pull-request-github"
+        "github.vscode-pull-request-github",
+        "matepek.vscode-catch2-test-adapter"
     ]
 }
