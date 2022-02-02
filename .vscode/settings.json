@@ -48,6 +48,6 @@
         "streambuf": "cpp",
         "typeinfo": "cpp"
     },
-    "testMate.cpp.test.executables": "{build,Build,BUILD,out,Out,OUT,bazel-out/k8-fastbuild/bin/src}/*/*{test,Test,TEST}*",
+    "testMate.cpp.test.executables": "{build,Build,BUILD,out,Out,OUT,bazel-out}/**/*{test,Test,TEST}*",
     "clangd.onConfigChanged": "restart",
 }

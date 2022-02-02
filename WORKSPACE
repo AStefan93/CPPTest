@@ -19,5 +19,6 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 git_repository(
   name = "googletest",
   remote = "https://github.com/google/googletest",
-  tag = "release-1.11.0",
+  commit = "e2239ee6043f73722e7aa812a459f54a28552929", 
+  shallow_since = "1623433346 -0700"
 )
