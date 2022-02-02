@@ -50,4 +50,6 @@
     },
     "testMate.cpp.test.executables": "{build,Build,BUILD,out,Out,OUT,bazel-out}/**/*{test,Test,TEST}*",
     "clangd.onConfigChanged": "restart",
+    "bazel.buildifierFixOnFormat": true,
+    "bazel.enableCodeLens": true,
 }
