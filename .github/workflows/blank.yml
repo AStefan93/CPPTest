@@ -31,13 +31,12 @@ jobs:
 
   staticChecks:
     needs: build
-    using: 'docker'
-    image: 'Dockerfile'
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Run static checks
-        using : apt-get install cppcheck
-        run: cppcheck src --enable=all --inconclusive --library=posix --suppress=missingIncludeSystem
+      - run: apt-get install cppcheck
+      - run: cppcheck src --enable=all --inconclusive --library=posix --suppress=missingIncludeSystem
 
   runTests:
     needs: build
