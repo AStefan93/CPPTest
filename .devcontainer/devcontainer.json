@@ -24,7 +24,9 @@
 		"vscode-icons-team.vscode-icons",
 		"matepek.vscode-catch2-test-adapter",
 		"zxh404.vscode-proto3",
-		"tabnine.tabnine-vscode"
+		"tabnine.tabnine-vscode",
+		"redhat.vscode-xml",
+		"redhat.vscode-yaml"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
