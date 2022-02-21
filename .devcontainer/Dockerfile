@@ -1,7 +1,7 @@
 # Dockerfile contents:
 FROM ubuntu:latest
 ENV DEBIAN_FRONTEND="noninteractive" TZ="America/Toronto"
-    
+
 ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
@@ -22,13 +22,15 @@ RUN groupadd --gid $USER_GID $USERNAME \
 RUN apt-get update && apt-get -y install build-essential cppcheck valgrind clang clangd clang-tidy clang-format lldb llvm gdb git \
     && apt-get -y install nodejs npm \
     && npm install -g @bazel/bazelisk \
-    && apt-get -y install protobuf-compiler
+    && apt-get -y install protobuf-compiler \
+    && apt-get -y install wget
 
 #Fix bazel extension
 RUN ln -s bazel-out/../../../external
 
 #Install Buildifier and add to path
-#TODO
+RUN wget -O /usr/bin/buildifier https://github.com/bazelbuild/buildtools/releases/download/5.0.1/buildifier-linux-amd64 \
+    && chmod +x /usr/bin/buildifier
 
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 

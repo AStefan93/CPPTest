@@ -35,7 +35,10 @@ bazel-out
 bazel-CPPTest
 bazel-testlogs
 
-#clang
+# Clang
 .clangd
 compile_commands.json
 external
+
+# Protocol Buffers
+*.pb.*
