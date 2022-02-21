@@ -33,7 +33,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - run: apt-get install cppcheck
+      - run: sudo apt-get install cppcheck
       - uses: actions/checkout@v2
       - name: Run static checks
         run: cppcheck src --enable=all --inconclusive --library=posix --suppress=missingIncludeSystem
