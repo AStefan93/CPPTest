@@ -9,7 +9,7 @@ cc_test(
     name = "array_test",
     srcs = ["array_test.cpp"],
     deps = [
+        "array",
         "@googletest//:gtest_main",
-        "array"
-    ]
+    ],
 )

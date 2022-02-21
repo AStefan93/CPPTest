@@ -11,6 +11,7 @@
         "vscode-icons-team.vscode-icons",
         "tabnine.tabnine-vscode",
         "github.vscode-pull-request-github",
-        "matepek.vscode-catch2-test-adapter"
+        "matepek.vscode-catch2-test-adapter",
+        "zxh404.vscode-proto3"
     ]
 }
