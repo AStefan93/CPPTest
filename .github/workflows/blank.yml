@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Build
-        run: bazel build ...
+        run: bazel build ... && bazel run @hedron_compile_commands//:refresh_all
 
       # Runs a set of commands using the runners shell
       - name: Run tests
