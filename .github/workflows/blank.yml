@@ -29,6 +29,14 @@ jobs:
       - name: Build
         run: bazel build ... && bazel run @hedron_compile_commands//:refresh_all
 
+  staticChecks:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run static checks
+        run: cppcheck src --enable=all --inconclusive --library=posix --suppress=missingIncludeSystem
+
   runTests:
     needs: build
     runs-on: ubuntu-latest
