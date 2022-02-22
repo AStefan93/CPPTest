@@ -4,6 +4,6 @@ cc_library(
     hdrs = ["addressbook.hpp"],
     visibility = ["//visibility:public"],
     deps = [
-        "//external_interface/addressbook:addressbook_proto",
+        "//external_interface/addressbook:addressbook_cc_proto",
     ],
 )
