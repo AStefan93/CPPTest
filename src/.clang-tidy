@@ -1,4 +1,5 @@
-Checks:          '-*,clang-analyzer-*,
+Checks:        '-*, 
+                clang-analyzer-*,
                 modernize-avoid-bind,
                 modernize-avoid-c-arrays,
                 modernize-concat-nested-namespaces,
@@ -29,7 +30,10 @@ Checks:          '-*,clang-analyzer-*,
                 modernize-use-transparent-functors, 	
                 modernize-use-uncaught-exceptions, 	
                 modernize-use-using, 	
-                performance-*,readability*,cppcoreguidelines-*, llvm-*,
+                performance-*,
+                readability*,
+                cppcoreguidelines-*, 
+                llvm*,
                 google-*,
                 bugprone-*'
 AnalyzeTemporaryDtors: false
@@ -40,7 +44,6 @@ CheckOptions:
     {key: readability-identifier-naming.ClassMethodCase, value: lower_case},
     {key: readability-identifier-naming.StructCase, value: lower_case},
     {key: readability-identifier-naming.VariableCase,, value: lower_case},
-    {key: readability-identifier-naming.GlobalConstantCase,, value: UPPER_CASE},
-    {key: HeaderFilterRegex: "*.pb.*"}
+    {key: readability-identifier-naming.GlobalConstantCase,, value: UPPER_CASE}
     ]
   

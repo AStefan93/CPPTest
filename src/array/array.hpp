@@ -1,5 +1,4 @@
-#ifndef ARRAY_HPP
-#define ARRAY_HPP
+
 
 #include <iostream>
 #include <memory>
@@ -92,5 +91,3 @@ std::ostream &operator<<(std::ostream &os, const Array<T> &a) {
   os << "]";
   return os;
 }
-
-#endif  // ARRAY_HPP

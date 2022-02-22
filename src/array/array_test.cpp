@@ -75,13 +75,13 @@ TEST(Array, WhenMoveConstructingArrayExpectCorrectValues) {
 }
 TEST(Array, WhenMovingByAssignmentArrayExpectCorrectValues) {
   constexpr auto size = 5;
-  Array array_object1{size};
+  Array array_object{size};
   Array array_object2{size};
   constexpr auto index = 1;
   constexpr auto test_value1{10};
   constexpr auto test_value2{20};
-  array_object1[index] = test_value1;
-  array_object2 = std::move(array_object1);
+  array_object[index] = test_value1;
+  array_object2 = std::move(array_object);
   array_object2[index + 1] = test_value2;
 
   EXPECT_EQ(array_object2[index], test_value1);
