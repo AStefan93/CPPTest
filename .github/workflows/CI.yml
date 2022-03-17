@@ -25,9 +25,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
+      - name: Fix compile commands error
+        run: ln -s bazel-out/../../../external
+      # Build the code and generate the compile commands
       - name: Build
-        run: bazel build ... && bazel run @hedron_compile_commands//:refresh_all
+        run: bazel build ...
+      - name: Compile commands generation
+        run: bazel run @hedron_compile_commands//:refresh_all
 
   staticChecks:
     needs: build

@@ -53,4 +53,5 @@
     "bazel.buildifierFixOnFormat": true,
     "bazel.enableCodeLens": true,
     "terminal.integrated.defaultProfile.linux": "bash",
+    "editor.formatOnSave": true,
 }

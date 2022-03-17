@@ -16,7 +16,9 @@ class Array {
   std::unique_ptr<T[]> m_ptr{nullptr};
   T m_size{0};
 
-  bool IsValidIndex(T index) const { return (index >= 0) && (index < m_size); }
+  bool is_valid_index(T index) const {
+    return (index >= 0) && (index < m_size);
+  }
 
  public:
   Array() = default;
@@ -50,13 +52,13 @@ class Array {
   T size() const { return m_size; };
   bool empty() const { return (m_size == 0); }
   T &operator[](T index) {
-    if (!IsValidIndex(index)) {
+    if (!is_valid_index(index)) {
       throw std::runtime_error("Index out of bounds.");
     }
     return m_ptr.get()[index];
   }
   T operator[](T index) const {
-    if (!IsValidIndex(index)) {
+    if (!is_valid_index(index)) {
       throw std::runtime_error("Index out of bounds.");
     }
     return m_ptr.get()[index];
