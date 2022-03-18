@@ -37,7 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run hedron compile commands
-        run: ln -s bazel-out/../../../external bazel run @hedron_compile_commands//:refresh_all
+        run: ln -s bazel-out/../../../external && bazel run @hedron_compile_commands//:refresh_all
 
   staticChecks:
     needs: build
