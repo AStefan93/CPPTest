@@ -25,14 +25,15 @@ RUN apt-get update && apt-get -y install build-essential cppcheck valgrind clang
     && apt-get -y install protobuf-compiler \
     && apt-get -y install wget
 
-#Fix bazel extension
-RUN ln -s bazel-out/../../../external
-
 #Install Buildifier and add to path
 RUN wget -O /usr/bin/buildifier https://github.com/bazelbuild/buildtools/releases/download/5.0.1/buildifier-linux-amd64 \
     && chmod +x /usr/bin/buildifier
 
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+
+#Fix bazel compile commands generation extension
+WORKDIR /workspaces/CPPTest
+RUN ln -s bazel-out/../../../external
 
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME

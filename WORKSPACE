@@ -1,5 +1,7 @@
+# Standard Bazel Tools
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+# Protocol Buffers
 # rules_proto defines abstract rules for building Protocol Buffers.
 http_archive(
     name = "rules_proto",
@@ -34,6 +36,7 @@ load("@hedron_compile_commands//:workspace_setup.bzl", "hedron_compile_commands_
 
 hedron_compile_commands_setup()
 
+# Google Test
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 git_repository(
