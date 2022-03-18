@@ -26,12 +26,12 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Fix compile commands error
-      - run: ln -s bazel-out/../../../external
+        run: ln -s bazel-out/../../../external
       # Build the code and generate the compile commands
       - name: Build
-      - run: bazel build ...
+        run: bazel build ...
       - name: Compile commands generation
-      - run: bazel run @hedron_compile_commands//:refresh_all
+        run: bazel run @hedron_compile_commands//:refresh_all
 
   staticChecks:
     needs: build
