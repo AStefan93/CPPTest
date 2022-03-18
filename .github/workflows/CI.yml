@@ -25,19 +25,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Fix protocol buffer compiler generation error
-      - run: ln -s bazel-out/../../../external
       # Build the code and generate the compile commands
       - name: Build
-        run: bazel build ... && bazel run @hedron_compile_commands//:refresh_all
-
-  clangCompileCommands:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run hedron compile commands
-        run: ln -s bazel-out/../../../external && bazel run @hedron_compile_commands//:refresh_all
+      # Fix protocol buffer compiler generation error
+      - run: ln -s bazel-out/../../../external
+      - run: bazel build ...
+      # Run compile commands generation
+      - run: bazel run @hedron_compile_commands//:refresh_all
 
   staticChecks:
     needs: build
