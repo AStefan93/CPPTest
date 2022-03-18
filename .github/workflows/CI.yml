@@ -31,6 +31,14 @@ jobs:
       - name: Build
         run: bazel build ... && bazel run @hedron_compile_commands//:refresh_all
 
+  clangCompileCommands:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run hedron compile commands
+        run: ln -s bazel-out/../../../external bazel run @hedron_compile_commands//:refresh_all
+
   staticChecks:
     needs: build
     runs-on: ubuntu-latest
