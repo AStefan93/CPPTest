@@ -23,9 +23,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Check Out Code
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
+      - name: Create symbolic link to fix compile commmands error
+        run: ln -s bazel-out/../../../external
       - name: Build
         run: bazel build ... && bazel run @hedron_compile_commands//:refresh_all
 
