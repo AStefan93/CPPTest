@@ -4,6 +4,8 @@
 #include <iostream>
 #include <memory>
 
+namespace CPPTest::Array {
+
 /**
  * @brief
  *
@@ -94,5 +96,6 @@ std::ostream &operator<<(std::ostream &os, const Array<T> &a) {
   os << "]";
   return os;
 }
+}  // namespace CPPTest::Array
 
 #endif  // ARRAY_HPP

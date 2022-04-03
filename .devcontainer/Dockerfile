@@ -23,7 +23,8 @@ RUN apt-get update && apt-get -y install build-essential cppcheck valgrind clang
     && apt-get -y install nodejs npm \
     && npm install -g @bazel/bazelisk \
     && apt-get -y install protobuf-compiler \
-    && apt-get -y install wget
+    && apt-get -y install wget \
+    && apt-get -y install python
 
 #Install Buildifier and add to path
 RUN wget -O /usr/bin/buildifier https://github.com/bazelbuild/buildtools/releases/download/5.0.1/buildifier-linux-amd64 \
