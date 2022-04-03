@@ -1,6 +1,7 @@
 #include "addressbook.hpp"
 
 #include "external_interface/addressbook/addressbook.pb.h"
+namespace CPPTest::Addressbook {
 
 void john_doe(tutorial::Person* foo_person) {
   foo_person->set_name("John Doe");
@@ -13,3 +14,4 @@ void addressbook_main() {
   tutorial::AddressBook address_book;
   john_doe(address_book.add_people());
 }
+}  // namespace CPPTest::Addressbook

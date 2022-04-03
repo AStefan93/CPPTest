@@ -90,9 +90,8 @@ TEST(Array, WhenMovingByAssignmentArrayExpectCorrectValues) {
   EXPECT_EQ(array_object2[index + 1], test_value2);
 }
 
-}  // namespace CPPTest::Array::Test
-
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
+}  // namespace CPPTest::Array::Test
