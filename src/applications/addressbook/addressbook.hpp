@@ -3,6 +3,6 @@
 
 #include "external_interface/addressbook/addressbook.pb.h"
 
-tutorial::Person addressbook_main();
+void john_doe(tutorial::Person* foo_person);
 
 #endif
