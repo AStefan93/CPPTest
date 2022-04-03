@@ -5,6 +5,8 @@
 
 #include <stdexcept>
 
+namespace CPPTest::Array::Test {
+
 TEST(Array, WhenDefaultConstructorExpectEmptyArray) {
   using ::testing::IsEmpty;
   Array<int> empty_array{};
@@ -87,6 +89,8 @@ TEST(Array, WhenMovingByAssignmentArrayExpectCorrectValues) {
   EXPECT_EQ(array_object2[index], test_value1);
   EXPECT_EQ(array_object2[index + 1], test_value2);
 }
+
+}  // namespace CPPTest::Array::Test
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
