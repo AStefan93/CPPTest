@@ -35,7 +35,7 @@ class Array {
     }
     std::cout << "COPY CONSTRUCTOR CALLED" << std::endl;
   }
-  Array(Array &&source) {
+  Array(Array &&source) noexcept {
     if (!source.empty()) {
       m_size = std::move(source.m_size);
       m_ptr = std::move(source.m_ptr);
@@ -52,7 +52,7 @@ class Array {
     std::cout << "CONSTRUCTOR CALLED" << std::endl;
   }
   T size() const { return m_size; };
-  bool empty() const { return (m_size == 0); }
+  [[nodiscard]] bool empty() const { return (m_size == 0); }
   T &operator[](T index) {
     if (!is_valid_index(index)) {
       throw std::runtime_error("Index out of bounds.");
@@ -76,7 +76,7 @@ class Array {
 
     return *this;
   }
-  Array &operator=(Array &&source) {
+  Array &operator=(Array &&source) noexcept {
     if (!source.empty()) {
       m_size = source.m_size;
       m_ptr = std::move(source.m_ptr);

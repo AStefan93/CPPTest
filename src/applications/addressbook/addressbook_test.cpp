@@ -2,18 +2,18 @@
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
+
+#include <memory>
 namespace CPPTest::Addressbook::Test {
 
 class AddressbookTest : public ::testing::Test {
-  void SetUp() override { john_doe(m_foo_person); }
-  void TearDown() override {
-    m_foo_person->Clear();
-    google::protobuf::ShutdownProtobufLibrary();
-  }
+  void SetUp() override { john_doe(m_foo_person.get()); }
+  void TearDown() override { google::protobuf::ShutdownProtobufLibrary(); }
 
  protected:
   // NOLINTNEXTLINE (cppcoreguidelines-non-private-member-variables-in-classes)
-  tutorial::Person* m_foo_person = new tutorial::Person;
+  std::unique_ptr<tutorial::Person> m_foo_person{
+      std::make_unique<tutorial::Person>()};
 };
 
 TEST_F(AddressbookTest, WhenPersonIsSetExpectCorrectName) {
