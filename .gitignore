@@ -42,3 +42,7 @@ external
 
 # Protocol Buffers
 *.pb.*
+/external
+/bazel-*
+/compile_commands.json
+/.cache/
