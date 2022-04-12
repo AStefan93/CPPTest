@@ -16,3 +16,12 @@ cc_test(
         "@googletest//:gtest_main",
     ],
 )
+
+cc_test(
+    name = "addressbook_test_integration",
+    srcs = ["addressbook_test_integration.cpp"],
+    deps = [
+        "addressbook",
+        "@googletest//:gtest_main",
+    ],
+)

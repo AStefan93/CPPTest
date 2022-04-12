@@ -54,4 +54,11 @@
     "bazel.enableCodeLens": true,
     "terminal.integrated.defaultProfile.linux": "bash",
     "editor.formatOnSave": true,
+    "sonarlint.pathToCompileCommands": "/workspaces/CPPTest/compile_commands.json",
+    "sonarlint.testFilePattern": "{build,Build,BUILD,out,Out,OUT,bazel-out/k8-fastbuild/bin/src}/**/__main__/**/*{test,Test,TEST}*",
+    "sonarlint.output.showAnalyzerLogs": true,
+    "C_Cpp.codeAnalysis.clangTidy.checks.enabled": [
+        "*"
+    ],
+    "sonarlint.output.showVerboseLogs": true
 }
