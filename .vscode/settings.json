@@ -61,4 +61,5 @@
         "*"
     ],
     "sonarlint.output.showVerboseLogs": true,
+    "git.allowForcePush": true,
 }

@@ -39,6 +39,8 @@ jobs:
     steps:
       - run: sudo apt-get install cppcheck
       - uses: actions/checkout@v3
+      - name: Compile commands generation
+        run: bazel run @hedron_compile_commands//:refresh_all
       - name: Run static checks
         run: cppcheck src --enable=all --inconclusive --library=posix --project=compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
 
