@@ -9,7 +9,7 @@ namespace CPPTest::Addressbook::Test {
 class AddressbookIntegrationTest : public ::testing::Test {};
 
 TEST_F(AddressbookIntegrationTest, WhenMainCalledExpectOutputToStream) {
-  addressbook_main();
+  send_addressbook();
 }
 
 int main(int argc, char** argv) {

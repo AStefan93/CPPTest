@@ -40,7 +40,7 @@ jobs:
       - run: sudo apt-get install cppcheck
       - uses: actions/checkout@v3
       - name: Run static checks
-        run: cppcheck src --enable=all --inconclusive --library=posix --suppress=missingIncludeSystem
+        run: cppcheck src --enable=all --inconclusive --library=posix --project=compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
 
   runTests:
     needs: build

@@ -15,7 +15,7 @@ void joe_smith(tutorial::Person* foo_person) {
   foo_person->set_id(2);
 }
 
-void addressbook_main() {
+void send_addressbook() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
   tutorial::AddressBook address_book;
   john_doe(address_book.add_people());

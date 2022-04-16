@@ -60,5 +60,5 @@
     "C_Cpp.codeAnalysis.clangTidy.checks.enabled": [
         "*"
     ],
-    "sonarlint.output.showVerboseLogs": true
+    "sonarlint.output.showVerboseLogs": true,
 }
