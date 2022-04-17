@@ -26,8 +26,7 @@
 		"zxh404.vscode-proto3",
 		"redhat.vscode-xml",
 		"redhat.vscode-yaml",
-		"github.copilot",
-		"sonarsource.sonarlint-vscode"
+		"github.copilot"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
