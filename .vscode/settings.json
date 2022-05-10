@@ -58,4 +58,9 @@
         "*"
     ],
     "git.allowForcePush": true,
+    "doxdocgen.generic.dateTemplate": "",
+    "doxdocgen.file.copyrightTag": [],
+    "doxdocgen.file.versionTag": "",
+    "doxdocgen.generic.useGitUserEmail": true,
+    "doxdocgen.generic.useGitUserName": true,
 }

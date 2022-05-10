@@ -19,12 +19,13 @@ RUN groupadd --gid $USER_GID $USERNAME \
 # ********************************************************
 # * Anything else you want to do like clean up goes here *
 # ********************************************************
-RUN apt-get update && apt-get -y install build-essential cppcheck valgrind clang clangd clang-tidy clang-format lldb llvm gdb git \
+RUN apt-get update && apt-get -y install build-essential cppcheck valgrind clang clangd clang-tidy clang-format lldb llvm gdb git vim\
     && apt-get -y install nodejs npm \
     && npm install -g @bazel/bazelisk \
     && apt-get -y install protobuf-compiler \
     && apt-get -y install wget \
-    && apt-get -y install python
+    && apt-get -y install python \
+    && apt-get -y install qt5-default
 
 #Install Buildifier and add to path
 RUN wget -O /usr/bin/buildifier https://github.com/bazelbuild/buildtools/releases/download/5.0.1/buildifier-linux-amd64 \

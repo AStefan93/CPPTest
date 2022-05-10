@@ -41,5 +41,13 @@
 	// Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker.
 	// "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
 	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "${localEnv:$USER}"
+	"remoteUser": "vscode",
+	"features": {
+		"terraform": "latest",
+		"desktop-lite": {
+			"password": "vscode",
+			"webPort": "6080", //add port 6080 manually
+			"vncPort": "5901" //add port 5901 manually
+		}
+	}
 }
