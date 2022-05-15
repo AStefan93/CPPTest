@@ -27,6 +27,8 @@ jobs:
 
       - name: Fix compile commands error
         run: ln -s bazel-out/../../../external
+      - name: Install qt
+        run: sudo apt-get -y install qt5-default
       # Build the code and generate the compile commands
       - name: Build
         run: bazel build ...
