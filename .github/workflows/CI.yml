@@ -51,5 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Install qt
+        run: sudo apt-get -y install qt5-default
       - name: Run tests
         run: bazel test --test_output=all ...
