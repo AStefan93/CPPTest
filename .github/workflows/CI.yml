@@ -43,8 +43,10 @@ jobs:
       - uses: actions/checkout@v3
       - name: Compile commands generation
         run: bazel run @hedron_compile_commands//:refresh_all
-      - name: Run static checks
+      - name: cppcheck
         run: cppcheck src --enable=all --inconclusive --library=posix --project=compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
+      - name: clang-tidy check
+        run: clang-tidy src/applications/transitiveIncludes/foo.cpp
 
   runTests:
     needs: build
