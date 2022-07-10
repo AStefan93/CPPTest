@@ -33,10 +33,12 @@ Checks: "-*,
     performance-*,
     readability*,
     cppcoreguidelines-*,
-    llvm*,
+    llvm-*,
     google-*,
     bugprone-*"
 AnalyzeTemporaryDtors: false
+HeaderFilterRegex: "*"
+FormatStyle: file
 CheckOptions:
     [
         { key: readability-identifier-naming.ClassCase, value: CamelCase },
