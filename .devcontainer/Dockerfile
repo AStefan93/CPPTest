@@ -24,8 +24,11 @@ RUN apt-get update && apt-get -y install build-essential cppcheck valgrind clang
     && npm install -g @bazel/bazelisk \
     && apt-get -y install protobuf-compiler \
     && apt-get -y install wget \
-    && apt-get -y install python \
-    && apt-get -y install qt5-default
+    && apt-get -y install python3 \
+    && apt-get -y install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools
+
+# Install latest git version
+RUN apt-get install software-properties-common -y && apt-add-repository ppa:git-core/ppa && apt-get update && apt-get install git -y
 
 #Install Buildifier and add to path
 RUN wget -O /usr/bin/buildifier https://github.com/bazelbuild/buildtools/releases/download/5.0.1/buildifier-linux-amd64 \
