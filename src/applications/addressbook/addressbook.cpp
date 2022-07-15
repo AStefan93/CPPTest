@@ -24,4 +24,5 @@ void send_addressbook() {
 
   address_book.SerializeToOstream(&std::cout);
 }
+
 }  // namespace CPPTest::Addressbook

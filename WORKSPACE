@@ -46,7 +46,7 @@ git_repository(
     shallow_since = "1623433346 -0700",
 )
 
-#QT
+# QT
 git_repository(
     name = "com_justbuchanan_rules_qt",
     commit = "3196fcf2e6ee81cf3a2e2b272af3d4259b84fcf9",
@@ -69,3 +69,21 @@ new_local_repository(
 load("@com_justbuchanan_rules_qt//tools:qt_toolchain.bzl", "register_qt_toolchains")
 
 register_qt_toolchains()
+
+# gRPC
+http_archive(
+    name = "com_github_grpc_grpc",
+    sha256 = "5de9401d0ab66370af12707dd4b43bf81e9e6c585da8de06cc3ee01c7dc19a99",
+    strip_prefix = "grpc-a672e22bd1e10b3ff2a91aaae5aee3a65cc95bfe",
+    urls = [
+        "https://github.com/grpc/grpc/archive/a672e22bd1e10b3ff2a91aaae5aee3a65cc95bfe.tar.gz",
+    ],
+)
+
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
+
+load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
+
+grpc_extra_deps()

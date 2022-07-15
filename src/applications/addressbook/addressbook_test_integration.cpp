@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "addressbook.hpp"
+
 namespace CPPTest::Addressbook::Test {
 
 class AddressbookIntegrationTest : public ::testing::Test {};

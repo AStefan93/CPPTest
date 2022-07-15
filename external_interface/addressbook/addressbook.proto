@@ -22,3 +22,9 @@ message Person {
 }
 
 message AddressBook { repeated Person people = 1; }
+message void {}
+
+service grpcServiceAddressBook{
+  rpc createGrpcServiceAddressBook(AddressBook) returns (AddressBook);
+  rpc readGrpcServiceAddressBook(void) returns (AddressBook);
+}
