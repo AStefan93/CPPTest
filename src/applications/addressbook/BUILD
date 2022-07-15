@@ -8,15 +8,14 @@
 #     ],
 # )
 
-# cc_binary(
-#     name = "addressbook_server",
-#     srcs = ["addressbook_server.cpp"],
-#     defines = ["BAZEL_BUILD"],
-#     deps = [
-#         ":addressbook_cc_grpc",
-#         "@com_github_grpc_grpc//:grpc++",
-#     ],
-# )
+cc_binary(
+    name = "addressbook_server",
+    srcs = ["addressbook_server.cpp"],
+    deps = [
+        # ":addressbook_cc_grpc",
+        "@com_github_grpc_grpc//:grpc++",
+    ],
+)
 
 cc_library(
     name = "addressbook",
