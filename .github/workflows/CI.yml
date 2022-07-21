@@ -58,7 +58,7 @@ jobs:
       - name: Run tests
         run: bazel test --test_output=all ...
 
-  buildContainer:
+  buildUbuntuContainer:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -69,5 +69,19 @@ jobs:
         run: docker run -v $PWD:/srv -w/srv local bazel build ...
       - name: Generate compile commands
         run: docker run -v $PWD:/srv -w/srv local bazel run @hedron_compile_commands//:refresh_all
-      # - name: Run tests
-      #   run: docker run -v $PWD:/srv -w/srv local bazel test --test_output=all ...
+      - name: Upload image
+        uses: ishworkh/docker-image-artifact-upload@v1
+        with:
+          image: "local:latest"
+
+  runDebugTests:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Download image
+        uses: ishworkh/docker-image-artifact-download@v1
+        with:
+          image: "local:latest"
+      - name: Run tests
+        run: docker run -v $PWD:/srv -w/srv local bazel test --test_output=all ...
