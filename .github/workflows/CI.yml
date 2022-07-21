@@ -66,4 +66,4 @@ jobs:
       - name: Build docker images
         run: docker build -t local -f .devcontainer/Dockerfile .
       - name: Run tests
-        run: docker run -v $PWD:/srv -w/srv local make test
+        run: docker run -v $PWD:/srv -w/srv local bazel build ...
