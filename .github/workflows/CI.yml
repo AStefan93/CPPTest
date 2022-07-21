@@ -68,7 +68,7 @@ jobs:
       - name: GCC build
         run: docker run -v $PWD:/srv -w/srv local bazel build ...
       - name: Generate compile commands
-        run: docker run -v $PWD:/srv -w/srv local bazel run @hedron_compile_commands//:refresh_all
+        run: docker run -v $PWD:/srv -w/srv local sudo bazel run @hedron_compile_commands//:refresh_all
       - name: Upload image
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
