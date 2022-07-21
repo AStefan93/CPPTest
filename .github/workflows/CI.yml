@@ -66,9 +66,9 @@ jobs:
       - name: Build docker images
         run: docker build -t local -f .devcontainer/Dockerfile .
       - name: GCC build
-        run: docker run -v $PWD:/workspaces/CPPTest -w/workspaces/CPPTest local bazel build ...
+        run: docker run -v $PWD:/srv -w/srv local --privileged bazel build ...
       - name: Generate compile commands
-        run: docker run -v $PWD:/workspaces/CPPTest -w/workspaces/CPPTest local bazel run @hedron_compile_commands//:refresh_all
+        run: docker run -v $PWD:/srv -w/srv local --privileged bazel run @hedron_compile_commands//:refresh_all
       - name: Upload image
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
@@ -84,4 +84,4 @@ jobs:
         with:
           image: "local:latest"
       - name: Run tests
-        run: docker run -v $PWD:/workspaces/CPPTest -w/workspaces/CPPTest local bazel test --test_output=all ...
+        run: docker run -v $PWD:/srv -w/srv local --privileged bazel test --test_output=all ...
