@@ -57,3 +57,13 @@ jobs:
         run: sudo apt-get -y install qt5-default
       - name: Run tests
         run: bazel test --test_output=all ...
+
+  buildContainer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Build docker images
+        run: docker build -t local < .devcontainer/Dockerfile
+      - name: Run tests
+        run: docker run -it -v $PWD:/srv -w/srv local make test
