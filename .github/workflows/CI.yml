@@ -73,6 +73,8 @@ jobs:
         run: docker run -v $PWD:/srv -w/srv local sudo bazel build ...
       - name: Generate compile commands
         run: docker run -v $PWD:/srv -w/srv local sudo bazel run @hedron_compile_commands//:refresh_all
+      - name: Run tests
+        run: docker run -v $PWD:/srv -w/srv local sudo bazel test --test_output=all ...
       - name: Build docker images
         run: docker build -t gcclocal -f .devcontainer/Dockerfile .
       - name: Upload image
