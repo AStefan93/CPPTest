@@ -31,7 +31,7 @@ jobs:
         run: sudo apt-get -y install qt5-default
       # Build the code and generate the compile commands
       - name: Build
-        run: bazel build ...
+        run: bazel build --config release ...
       - name: Compile commands generation
         run: bazel run @hedron_compile_commands//:refresh_all
 
