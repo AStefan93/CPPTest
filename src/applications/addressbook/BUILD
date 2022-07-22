@@ -13,7 +13,7 @@ cc_binary(
     srcs = ["addressbook_server.cpp"],
     deps = [
         # ":addressbook_cc_grpc",
-        "@com_github_grpc_grpc//:grpc++",
+        # "@com_github_grpc_grpc//:grpc++",
     ],
 )
 
