@@ -70,11 +70,11 @@ jobs:
         with:
           image: "local:latest"
       - name: Build
-        run: docker run -v $PWD:/srv -w/srv local sudo bazel build ...
+        run: docker run -v $PWD:/srv -w/srv local sudo bazel build --config release ...
       - name: Generate compile commands
         run: docker run -v $PWD:/srv -w/srv local sudo bazel run @hedron_compile_commands//:refresh_all
       - name: Run tests
-        run: docker run -v $PWD:/srv -w/srv local sudo bazel test --test_output=all ...
+        run: docker run -v $PWD:/srv -w/srv local sudo bazel test --config release --test_output=all ...
       - name: Build docker images
         run: docker build -t gcclocal -f .devcontainer/Dockerfile .
       - name: Upload image
@@ -92,4 +92,4 @@ jobs:
         with:
           image: "gcclocal:latest"
       - name: Run tests
-        run: docker run -v $PWD:/srv -w/srv gcclocal sudo bazel test --test_output=all ...
+        run: docker run -v $PWD:/srv -w/srv gcclocal sudo bazel test --config release --test_output=all ...

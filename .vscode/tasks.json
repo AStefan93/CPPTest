@@ -3,7 +3,7 @@
         {
             "type": "shell",
             "label": "Build Release",
-            "command": "bazel build ... && bazel run @hedron_compile_commands//:refresh_all",
+            "command": "bazel build --config release ... && bazel run @hedron_compile_commands//:refresh_all",
             "problemMatcher": [
                 "$gcc"
             ],
