@@ -73,10 +73,10 @@ register_qt_toolchains()
 # gRPC
 http_archive(
     name = "com_github_grpc_grpc",
-    sha256 = "992d9c981afddee05469495df78f58999902c71d1b0e5d1c865013d3209e9b60",
-    strip_prefix = "grpc-93fbacb5343ea8cf993f779cee0847aed107bdc7",
+    sha256 = "a71d7da5e9e20de27b8805cf302d72556b4c6fae47753f6dd01f586ea3f173a3",
+    strip_prefix = "grpc-18d82d4a6a00cebfc874eb0b9c935a3ae4733c3a",
     urls = [
-        "https://github.com/grpc/grpc/archive/93fbacb5343ea8cf993f779cee0847aed107bdc7.tar.gz",
+        "https://github.com/grpc/grpc/archive/18d82d4a6a00cebfc874eb0b9c935a3ae4733c3a.tar.gz",
     ],
 )
 
