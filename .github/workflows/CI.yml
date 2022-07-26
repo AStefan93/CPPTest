@@ -37,9 +37,9 @@ jobs:
         with:
           image: "local:latest"
       - name: Build
-        run: docker run -d --name localContainer -v $PWD:/srv -w/srv local bazel build --config release ... && bazel run @hedron_compile_commands//:refresh_all -- --config=release
-      # - name: Generate compile commands
-      #   run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=release
+        run: docker run -d --name localContainer -v $PWD:/srv -w/srv local bazel build --config release ...
+      - name: Generate compile commands
+        run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=release
       - name: Run tests
         run: docker exec -w/srv localContainer sudo bazel test --config release --test_output=all ...
       - name: cppcheck
