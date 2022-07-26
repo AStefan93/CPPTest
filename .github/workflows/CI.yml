@@ -15,39 +15,6 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      - name: Fix compile commands error
-        run: ln -s bazel-out/../../../external
-      - name: Install qt
-        run: sudo apt-get -y install qt5-default
-      # Build the code and generate the compile commands
-      - name: Build
-        run: bazel build --config release ...
-      - name: Compile commands generation
-        run: bazel run @hedron_compile_commands//:refresh_all
-
-  staticChecks:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - run: sudo apt-get install cppcheck
-      - uses: actions/checkout@v3
-      - name: Compile commands generation
-        run: bazel run @hedron_compile_commands//:refresh_all
-      - name: cppcheck
-        run: cppcheck src --enable=all --inconclusive --library=posix --project=compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
-      - name: clang-tidy check
-        run: clang-tidy src/applications/transitiveIncludes/foo.cpp
-
   buildUbuntuContainer:
     runs-on: ubuntu-latest
     steps:
@@ -75,6 +42,10 @@ jobs:
       #   run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=release
       - name: Run tests
         run: docker exec -w/srv localContainer sudo bazel test --config release --test_output=all ...
+      - name: cppcheck
+        run: docker exec -w/srv localContainer sudo cppcheck src --enable=all --inconclusive --library=posix --project=compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
+      - name: clang-tidy check
+        run: docker exec -w/srv localContainer sudo clang-tidy src/applications/transitiveIncludes/foo.cpp
       - name: Stop container
         run: docker stop localContainer
       - name: Build docker images
