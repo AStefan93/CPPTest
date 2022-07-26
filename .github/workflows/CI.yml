@@ -39,7 +39,7 @@ jobs:
       - name: Run container
         run: docker run -d --name localContainer --volume $PWD:/srv local
       - name: Start container
-        run: docker start localContainer
+        run: docker start -d localContainer
       - name: Build
         run: docker exec -w/srv localContainer sudo bazel build --config release ...
       - name: Generate compile commands
