@@ -72,9 +72,9 @@ jobs:
       - name: Build
         run: docker run -d --name localContainer -v $PWD:/srv -w/srv local sudo bazel build --config release ...
       - name: Generate compile commands
-        run: docker exec localContainer -w/srv sudo bazel run @hedron_compile_commands//:refresh_all
+        run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all
       - name: Run tests
-        run: docker exec localContainer -w/srv sudo bazel test --config release --test_output=all ...
+        run: docker exec -w/srv localContainer sudo bazel test --config release --test_output=all ...
       - name: Stop container
         run: docker stop localContainer
       - name: Build docker images
