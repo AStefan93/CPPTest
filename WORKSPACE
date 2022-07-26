@@ -46,30 +46,6 @@ git_repository(
     shallow_since = "1623433346 -0700",
 )
 
-# QT
-git_repository(
-    name = "com_justbuchanan_rules_qt",
-    commit = "3196fcf2e6ee81cf3a2e2b272af3d4259b84fcf9",
-    remote = "https://github.com/justbuchanan/bazel_rules_qt.git",
-    shallow_since = "1645077947 -0800",
-)
-
-load("@com_justbuchanan_rules_qt//:qt_configure.bzl", "qt_configure")
-
-qt_configure()
-
-load("@local_config_qt//:local_qt.bzl", "local_qt_path")
-
-new_local_repository(
-    name = "qt",
-    build_file = "@com_justbuchanan_rules_qt//:qt.BUILD",
-    path = local_qt_path(),
-)
-
-load("@com_justbuchanan_rules_qt//tools:qt_toolchain.bzl", "register_qt_toolchains")
-
-register_qt_toolchains()
-
 # gRPC
 http_archive(
     name = "com_github_grpc_grpc",

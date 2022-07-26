@@ -25,7 +25,6 @@ RUN apt-get update && apt-get -y install build-essential cppcheck valgrind clang
     && apt-get -y install protobuf-compiler \
     && apt-get -y install wget \
     && apt-get -y install python3 \
-    && apt-get -y install qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools \
     && apt-get -y install default-jdk
 
 # Install latest git version
