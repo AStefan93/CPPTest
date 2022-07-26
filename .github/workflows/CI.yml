@@ -36,8 +36,10 @@ jobs:
         uses: ishworkh/docker-image-artifact-download@v1
         with:
           image: "local:latest"
+      - name: Start container
+        run: docker run -d --name localContainer --volume $PWD:/srv local
       - name: Build
-        run: docker run -d --name localContainer -v $PWD:/srv -w/srv local sudo bazel build --config release ...
+        run: docker exec -w/srv localContainer sudo bazel build --config release ...
       - name: Generate compile commands
         run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=release
       - name: Run tests
