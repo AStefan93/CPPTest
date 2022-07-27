@@ -48,10 +48,10 @@ jobs:
         run: docker exec -w/srv localContainer sudo cppcheck src --enable=all --inconclusive --library=posix --project=compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
       - name: clang-tidy check
         run: docker exec -w/srv localContainer sudo clang-tidy src/applications/transitiveIncludes/foo.cpp
+      - name: Build docker images
+        run: docker commit localContainer gcclocal
       - name: Stop container
         run: docker stop localContainer
-      - name: Build docker images
-        run: docker build -t gcclocal -f .devcontainer/Dockerfile .
       - name: Upload image
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
