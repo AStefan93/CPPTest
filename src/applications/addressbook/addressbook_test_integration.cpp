@@ -9,6 +9,7 @@ namespace CPPTest::Addressbook::Test {
 
 class AddressbookIntegrationTest : public ::testing::Test {};
 
+// NOLINTNEXTLINE(cppcoreguidelines-owning-memory,cppcoreguidelines-avoid-non-const-global-variables)
 TEST_F(AddressbookIntegrationTest, WhenMainCalledExpectOutputToStream) {
   send_addressbook();
 }
