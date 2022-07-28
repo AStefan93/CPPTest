@@ -88,13 +88,13 @@ class Array {
 };
 
 template <typename T>
-std::ostream &operator<<(std::ostream &os, const Array<T> &a) {
-  os << "[ ";
-  for (int i = 0; i < a.size(); i++) {
-    os << a[i] << ' ';
+std::ostream &operator<<(std::ostream &ostream, const Array<T> &input) {
+  ostream << "[ ";
+  for (int i = 0; i < input.size(); i++) {
+    ostream << input[i] << ' ';
   }
-  os << "]";
-  return os;
+  ostream << "]";
+  return ostream;
 }
 }  // namespace CPPTest::Array
 
