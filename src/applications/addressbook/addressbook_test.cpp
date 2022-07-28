@@ -6,9 +6,11 @@
 #include <memory>
 namespace CPPTest::Addressbook::Test {
 
+// NOLINTNEXTLINE(cppcoreguidelines-special-member-functions)
 class AddressbookTest : public ::testing::Test {
-  void SetUp() override { john_doe(m_foo_person.get()); }
-  void TearDown() override { google::protobuf::ShutdownProtobufLibrary(); }
+ public:
+  AddressbookTest() { john_doe(m_foo_person.get()); }
+  ~AddressbookTest() override { google::protobuf::ShutdownProtobufLibrary(); }
 
  protected:
   // NOLINTNEXTLINE (cppcoreguidelines-non-private-member-variables-in-classes)
