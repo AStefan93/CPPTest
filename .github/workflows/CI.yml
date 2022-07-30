@@ -45,12 +45,6 @@ jobs:
         run: docker exec -w/srv localContainer sudo bazel build --config ${{ matrix.config }} ...
       - name: Generate compile commands
         run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=${{ matrix.config }}
-      - name: Run tests
-        run: docker exec -w/srv localContainer sudo bazel test --config ${{ matrix.config }} --test_output=all ...
-      - name: cppcheck
-        run: docker exec -w/srv localContainer sudo cppcheck src --enable=all --inconclusive --library=posix --project=compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
-      - name: clang-tidy check
-        run: docker exec -w/srv localContainer sudo clang-tidy src/applications/transitiveIncludes/foo.cpp
       - name: Build docker images
         run: docker commit localContainer gcclocal${{ matrix.config }}
       - name: Stop container
@@ -74,3 +68,7 @@ jobs:
           image: "gcclocal${{ matrix.config }}:latest"
       - name: Run tests
         run: docker run -v $PWD:/srv -w/srv gcclocal${{ matrix.config }} sudo bazel test --config ${{ matrix.config }} --test_output=all ...
+      - name: cppcheck
+        run: docker exec -w/srv gcclocal${{ matrix.config }} sudo cppcheck src --enable=all --inconclusive --library=posix --project=compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
+      - name: clang-tidy check
+        run: docker exec -w/srv gcclocal${{ matrix.config }} sudo clang-tidy src/applications/transitiveIncludes/foo.cpp
