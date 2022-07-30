@@ -1,9 +1,10 @@
 #include "array.hpp"
 
-#include <gmock/gmock.h>
-#include <gtest/gtest.h>
-
 #include <stdexcept>
+#include <utility>
+
+#include "gmock/gmock.h"
+#include "gtest/gtest.h"
 
 namespace CPPTest::Array::Test {
 

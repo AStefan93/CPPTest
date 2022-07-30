@@ -3,7 +3,7 @@
         {
             "type": "shell",
             "label": "Build Release",
-            "command": "bazel build --config release ... && bazel run @hedron_compile_commands//:refresh_all -- --config=release",
+            "command": "bazel build --config release ... && bazel run @hedron_compile_commands//:refresh_all -- --config=release && bazel build --config=iwyu ...",
             "problemMatcher": [
                 "$gcc"
             ],
@@ -15,7 +15,7 @@
         {
             "type": "shell",
             "label": "Build Debug",
-            "command": "bazel build --config debug ... && bazel run @hedron_compile_commands//:refresh_all -- --config=debug",
+            "command": "bazel build --config debug ... && bazel run @hedron_compile_commands//:refresh_all -- --config=debug && bazel build --config=iwyu ...",
             "problemMatcher": [
                 "$gcc"
             ],

@@ -1,9 +1,12 @@
 #include "addressbook.hpp"
 
-#include <gmock/gmock.h>
-#include <gtest/gtest.h>
+#include <google/protobuf/message_lite.h>  // for ShutdownProtobufLibrary
 
-#include <memory>
+#include <memory>  // for allocator, make_unique, unique_ptr
+#include <string>  // for string
+
+#include "gmock/gmock.h"  // for MakePredicateFormatterFromMatcher, EXPECT_THAT
+#include "gtest/gtest.h"  // for TestInfo, InitGoogleTest, Message, RUN_ALL_TESTS, TEST_F, TestPartResult
 namespace CPPTest::Addressbook::Test {
 
 // NOLINTNEXTLINE(cppcoreguidelines-special-member-functions)

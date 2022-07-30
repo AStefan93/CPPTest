@@ -1,5 +1,9 @@
 #include "addressbook.hpp"
 
+#include <google/protobuf/stubs/common.h>
+
+#include <iostream>
+
 #include "external_interface/addressbook/addressbook.pb.h"
 namespace CPPTest::Addressbook {
 

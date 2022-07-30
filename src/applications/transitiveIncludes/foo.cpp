@@ -1,6 +1,8 @@
 #include "foo.hpp"
 
-#include "bar.hpp"
+#include <stddef.h>
+
+#include <iostream>
 
 std::vector<int> FooBar(std::vector<int> x) {
   for (size_t i = 0; i < x.size(); i++) {

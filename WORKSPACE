@@ -63,3 +63,15 @@ grpc_deps()
 load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
 
 grpc_extra_deps()
+
+# Include what you use
+git_repository(
+    name = "com_github_storypku_bazel_iwyu",
+    commit = "94c6e95c8cfeb8596b46b6dd13bb41c56fb41f74",
+    remote = "https://github.com/storypku/bazel_iwyu",
+    shallow_since = "1657478630 +0800",
+)
+
+load("@com_github_storypku_bazel_iwyu//bazel:dependencies.bzl", "bazel_iwyu_dependencies")
+
+bazel_iwyu_dependencies()

@@ -1,9 +1,7 @@
-#include <gmock/gmock.h>
-#include <gtest/gtest.h>
-
 #include <memory>
 
 #include "addressbook.hpp"
+#include "gtest/gtest.h"
 
 namespace CPPTest::Addressbook::Test {
 
