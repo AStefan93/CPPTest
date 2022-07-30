@@ -66,8 +66,10 @@ jobs:
         uses: ishworkh/docker-image-artifact-download@v1
         with:
           image: "gcclocal${{ matrix.config }}:latest"
+      - name: Run container
+        run: docker run --name localContainer -idt --volume $PWD:/srv gcclocal${{ matrix.config }}
       - name: Run tests
-        run: docker run --name localContainer -idt --volume $PWD:/srv gcclocal${{ matrix.config }} sudo bazel test --config ${{ matrix.config }} --test_output=all ...
+        run: docker exec -w/srv localContainer sudo bazel test --config ${{ matrix.config }} --test_output=all ...
       # - name: cppcheck
       #   run: docker exec -w/srv localContainer sudo cppcheck src --enable=all --inconclusive --library=posix --project=compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
       # - name: clang-tidy check
