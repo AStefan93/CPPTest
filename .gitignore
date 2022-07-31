@@ -46,3 +46,6 @@ external
 /bazel-*
 /compile_commands.json
 /.cache/
+
+# LCOV Coverage Report
+genhtml

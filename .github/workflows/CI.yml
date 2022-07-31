@@ -70,6 +70,10 @@ jobs:
         run: docker run --name localContainer -idt --volume $PWD:/srv gcclocal${{ matrix.config }}
       - name: Run tests
         run: docker exec -w/srv localContainer sudo bazel test --config ${{ matrix.config }} --test_output=all ...
+      - name: Generate coverage report data
+        run: docker exec -w/srv localContainer sudo bazel coverage --combined_report=lcov ...
+      - name: Generate html format coverage report
+        run: docker exec -w/srv localContainer sudo genhtml --output genhtml "$(bazel info output_path)/_coverage/_coverage_report.dat"
       - name: cppcheck
         run: docker exec -w/srv localContainer sudo cppcheck src --enable=all --inconclusive --library=posix --project=compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
       - name: clang-tidy check
