@@ -9,7 +9,8 @@ build:iwyu --cxxopt="-std=c++2a" --output_groups=report
 # Add clang compiler option
 # Use our custom-configured c++ toolchain.
 
-build:clang_config --crosstool_top=//toolchain:clang_suite --cxxopt="-std=c++2a" --cxxopt="-g0" --cxxopt="-Wall"
+build:ClangDebug --crosstool_top=//toolchain:clang_suite --cxxopt="-std=c++2a" --cxxopt="-g0" --cxxopt="-Wall"
+build:ClangRelease --crosstool_top=//toolchain:clang_suite --cxxopt="-std=c++2a" --cxxopt="-g3" --cxxopt="-Wall"
 
 # Use --cpu as a differentiator.
 
