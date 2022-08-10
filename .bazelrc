@@ -5,3 +5,17 @@ coverage --cxxopt="-std=c++2a" --cxxopt="-g0"
 
 build:iwyu --cxxopt="-std=c++2a" --aspects @com_github_storypku_bazel_iwyu//bazel/iwyu:iwyu.bzl%iwyu_aspect
 build:iwyu --cxxopt="-std=c++2a" --output_groups=report
+
+# Add clang compiler option
+# Use our custom-configured c++ toolchain.
+
+build:clang_config --crosstool_top=//toolchain:clang_suite --cxxopt="-std=c++2a" --cxxopt="-g0" --cxxopt="-Wall"
+
+# Use --cpu as a differentiator.
+
+build:clang_config --cpu=k8
+
+# Use the default Bazel C++ toolchain to build the tools used during the
+# build.
+
+build:clang_config --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
