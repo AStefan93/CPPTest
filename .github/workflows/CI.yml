@@ -87,7 +87,7 @@ jobs:
     needs: buildUbuntuContainer
     strategy:
       matrix:
-        config: [Debug, Release]
+        config: [debug, release]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -98,9 +98,9 @@ jobs:
       - name: Run container
         run: docker run --name localContainer -idt --volume $PWD:/srv local
       - name: Build
-        run: docker exec -w/srv localContainer sudo bazel build --config Clang${{ matrix.config }} ...
+        run: docker exec -w/srv localContainer sudo bazel build --config clang_${{ matrix.config }} ...
       - name: Generate compile commands
-        run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=Clang${{ matrix.config }}
+        run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=clang_${{ matrix.config }}
       - name: IWYU
         run: docker exec -w/srv localContainer sudo bazel build --config=iwyu ...
       - name: cppcheck
