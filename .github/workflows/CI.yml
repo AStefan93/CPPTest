@@ -15,7 +15,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  buildUbuntuContainer:
+  UbuntuLatest:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -27,8 +27,8 @@ jobs:
         with:
           image: "local:latest"
 
-  buildGCC:
-    needs: buildUbuntuContainer
+  GCC:
+    needs: UbuntuLatest
     strategy:
       matrix:
         config: [debug, release]
@@ -60,8 +60,8 @@ jobs:
         with:
           image: "gcclocal${{ matrix.config }}:latest"
 
-  runTests:
-    needs: buildGCC
+  runTestsGCC:
+    needs: GCC
     strategy:
       matrix:
         config: [debug, release]
@@ -83,8 +83,8 @@ jobs:
       - name: Stop container
         run: docker stop localContainer
 
-  buildClang:
-    needs: buildUbuntuContainer
+  Clang:
+    needs: UbuntuLatest
     strategy:
       matrix:
         config: [debug, release]
@@ -115,3 +115,26 @@ jobs:
         uses: ishworkh/docker-image-artifact-upload@v1
         with:
           image: "clanglocal${{ matrix.config }}:latest"
+
+  runTestsClang:
+    needs: Clang
+    strategy:
+      matrix:
+        config: [debug, release]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Download image
+        uses: ishworkh/docker-image-artifact-download@v1
+        with:
+          image: "clanglocal${{ matrix.config }}:latest"
+      - name: Run container
+        run: docker run --name localContainer -idt --volume $PWD:/srv clanglocal${{ matrix.config }}
+      - name: Run tests
+        run: docker exec -w/srv localContainer sudo bazel test --config clang_${{ matrix.config }} --test_output=all ...
+      - name: Generate coverage report data
+        run: docker exec -w/srv localContainer sudo bazel coverage --combined_report=lcov ...
+      # - name: Generate html format coverage report
+      #   run: docker exec -w/srv localContainer sudo genhtml --output genhtml "$(bazel info output_path)/_coverage/_coverage_report.dat"
+      - name: Stop container
+        run: docker stop localContainer
