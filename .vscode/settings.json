@@ -53,6 +53,7 @@
     "bazel.buildifierFixOnFormat": true,
     "bazel.enableCodeLens": true,
     "terminal.integrated.defaultProfile.linux": "bash",
+    "editor.defaultFormatter": "xaver.clang-format",
     "editor.formatOnSave": true,
     "C_Cpp.codeAnalysis.clangTidy.checks.enabled": [
         "*"
