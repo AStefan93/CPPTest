@@ -1,5 +1,5 @@
-build:release --cxxopt="-std=c++2a" --cxxopt="-g3" --cxxopt="-Wall" --cxxopt="-fsanitize=address" --linkopt="-fsanitize=address"
-build:debug --cxxopt="-std=c++2a" --cxxopt="-g0" --cxxopt="-Wall" --cxxopt="-fsanitize=address" --linkopt="-fsanitize=address"
+build:gcc_release --cxxopt="-std=c++2a" --cxxopt="-g3" --cxxopt="-Wall" --cxxopt="-fsanitize=address" --linkopt="-fsanitize=address"
+build:gcc_debug --cxxopt="-std=c++2a" --cxxopt="-g0" --cxxopt="-Wall" --cxxopt="-fsanitize=address" --linkopt="-fsanitize=address"
 
 coverage --cxxopt="-std=c++2a" --cxxopt="-g0"
 
