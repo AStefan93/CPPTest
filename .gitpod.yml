@@ -1,7 +1,8 @@
 image:
   file: .devcontainer/Dockerfile
 tasks:
-    - init: bazel build --config release ... && bazel run @hedron_compile_commands//:refresh_all -- --config=release
+  - init: bazel build --config debug ... && bazel run @hedron_compile_commands//:refresh_all -- --config=debug
+  - command: bazel test --config debug ... && bazel run @hedron_compile_commands//:refresh_all -- --config=debug
 
 github:
   prebuilds:
