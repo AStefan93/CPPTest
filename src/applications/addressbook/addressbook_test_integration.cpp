@@ -12,6 +12,7 @@ TEST_F(AddressbookIntegrationTest, WhenMainCalledExpectOutputToStream) {
   send_addressbook();
 }
 
+// NOLINTNEXTLINE(cppcoreguidelines-owning-memory,cppcoreguidelines-avoid-non-const-global-variables)
 TEST(muu, mu) { FAIL(); }
 
 int main(int argc, char** argv) {
