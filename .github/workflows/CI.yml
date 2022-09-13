@@ -4,9 +4,10 @@ name: CI
 
 # Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: ["**"]
+  # schedule:
+  #   - cron: "45 8 * * 4"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -15,29 +16,15 @@ on:
 jobs:
   UbuntuLatest:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+        config: [debug, release]
     steps:
       - name: Check out code
         uses: actions/checkout@v3
       - name: Build docker images
         run: docker build -t local -f .devcontainer/Dockerfile .
-      - name: Upload image
-        uses: ishworkh/docker-image-artifact-upload@v1
-        with:
-          image: "local:latest"
-
-  Build:
-    needs: UbuntuLatest
-    strategy:
-      matrix:
-        compiler: [gcc, clang]
-        config: [debug, release]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Download image
-        uses: ishworkh/docker-image-artifact-download@v1
-        with:
-          image: "local:latest"
       - name: Run container
         run: docker run --name localContainer -idt --volume $PWD:/srv local
       - name: Build
