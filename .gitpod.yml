@@ -1,5 +1,9 @@
 image:
   file: .devcontainer/Dockerfile
+tasks:
+  - command: |
+    bazel build --config release ... && bazel run @hedron_compile_commands//:refresh_all -- --config=release
+
 github:
   prebuilds:
     # enable for the master/default branch (defaults to true)
