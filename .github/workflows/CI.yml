@@ -14,6 +14,29 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  BuildImage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Get changed files in the docs folder
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v29.0.7
+        with:
+          files: .devcontainer/Dockerfile
+      - name: Docker Login
+        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
+      - name: Build docker image
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: docker build -t local -f .devcontainer/Dockerfile .
+      - name: Tag docker image
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: docker image tag local astefan93/cpp:latest
+      - name: Push docker image
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: docker push astefan93/cpp:latest
+
   UbuntuLatest:
     runs-on: ubuntu-latest
     strategy:
@@ -23,10 +46,8 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v3
-      - name: Build docker images
-        run: docker build -t local -f .devcontainer/Dockerfile .
       - name: Run container
-        run: docker run --name localContainer -idt --volume $PWD:/srv local
+        run: docker run --name localContainer -idt --volume $PWD:/srv astefan93/cpp:latest
       - name: Build
         run: docker exec -w/srv localContainer sudo bazel build --config ${{matrix.compiler}}_${{ matrix.config }} ...
       - name: Generate compile commands
@@ -34,6 +55,7 @@ jobs:
       - name: Run tests
         run: docker exec -w/srv localContainer sudo bazel test --config ${{matrix.compiler}}_${{ matrix.config }} --test_output=all ...
       - name: Generate coverage report data
+        if: ${{ matrix.config=='debug' }}
         run: docker exec -w/srv localContainer sudo bazel coverage --combined_report=lcov ...
       # - name: Generate html format coverage report
       #   run: docker exec -w/srv localContainer sudo genhtml --output genhtml "$(bazel info output_path)/_coverage/_coverage_report.dat"
