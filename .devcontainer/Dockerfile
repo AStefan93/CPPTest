@@ -37,10 +37,5 @@ RUN wget -O /usr/bin/buildifier https://github.com/bazelbuild/buildtools/release
 
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
-#Fix bazel compile commands generation extension
-WORKDIR /workspaces/CPPTest
-RUN ln -s bazel-out/../../../external
-RUN chown -R $USERNAME /workspaces/CPPTest
-
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME
