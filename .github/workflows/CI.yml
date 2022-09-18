@@ -14,6 +14,18 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  BuildImage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get changed files in the docs folder
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v29.0.7
+        with:
+          files: .devcontainer/Dockerfile
+      - name: Build docker images
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: docker build -t local -f .devcontainer/Dockerfile .
+
   UbuntuLatest:
     runs-on: ubuntu-latest
     strategy:
