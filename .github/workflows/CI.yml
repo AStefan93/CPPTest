@@ -55,7 +55,7 @@ jobs:
       # - name: Run tests
       #   run: docker exec -w/srv localContainer sudo bazel test --config ${{matrix.compiler}}_${{ matrix.config }} --test_output=all ...
       - name: Generate coverage report data
-        if: ${{ matrix.config }} = "debug"
+        if: ${{ matrix.config }} == "debug"
         run: docker exec -w/srv localContainer sudo bazel coverage --combined_report=lcov ...
       # - name: Generate html format coverage report
       #   run: docker exec -w/srv localContainer sudo genhtml --output genhtml "$(bazel info output_path)/_coverage/_coverage_report.dat"
