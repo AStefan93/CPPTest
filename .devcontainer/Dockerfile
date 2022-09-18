@@ -31,8 +31,6 @@ RUN apt-get update && apt-get -y install build-essential cppcheck valgrind clang
 # Install latest git version
 RUN apt-get install software-properties-common -y && apt-add-repository ppa:git-core/ppa && apt-get update && apt-get install git -y
 
-RUN apt-get update
-
 #Install Buildifier and add to path
 RUN wget -O /usr/bin/buildifier https://github.com/bazelbuild/buildtools/releases/download/5.0.1/buildifier-linux-amd64 \
     && chmod +x /usr/bin/buildifier
