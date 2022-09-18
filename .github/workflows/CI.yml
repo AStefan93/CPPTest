@@ -30,7 +30,7 @@ jobs:
         run: docker build -t local -f .devcontainer/Dockerfile .
       - name: Tag docker image
         if: steps.changed-files-specific.outputs.any_changed == 'true'
-        run: docker tag astefan93/cpp:latest
+        run: docker image tag local astefan93/cpp:latest
       - name: Push docker image
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: docker push astefan93/cpp:latest
