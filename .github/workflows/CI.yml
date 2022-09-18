@@ -26,12 +26,11 @@ jobs:
         with:
           files: .devcontainer/Dockerfile
       - name: Build docker image
-        id: build-image
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: docker build -t local -f .devcontainer/Dockerfile .
       - name: Upload docker image
         if: steps.changed-files-specific.outputs.any_changed == 'true'
-        run: docker push local astefan93/cpp:latest
+        run: docker push astefan93/cpp:latest
 
   # UbuntuLatest:
   #   runs-on: ubuntu-latest
