@@ -1,5 +1,4 @@
-image:
-  file: .devcontainer/Dockerfile
+image: astefan93/cpp:latest
 tasks:
   - command: bazel build --config clang_debug ... && bazel run @hedron_compile_commands//:refresh_all -- --config=clang_debug && bazel build --config=iwyu ...
 
