@@ -67,11 +67,3 @@ jobs:
         run: docker exec -w/srv localContainer sudo clang-tidy src/applications/addressbook/addressbook.cpp
       - name: Stop container
         run: docker stop localContainer
-
-  auto-approve:
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-    steps:
-      - uses: hmarr/auto-approve-action@v2
-        if: github.actor == 'renovate[bot]'
