@@ -4,137 +4,66 @@ name: CI
 
 # Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: ["**"]
-  pull_request:
-    branches: [master, development]
+  # schedule:
+  #   - cron: "45 8 * * 4"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  BuildImage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Get changed files in the docs folder
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v29.0.9
+        with:
+          files: .devcontainer/Dockerfile
+      - name: Docker Login
+        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
+      - name: Build docker image
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: docker build -t local -f .devcontainer/Dockerfile .
+      - name: Tag docker image
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: docker image tag local astefan93/cpp:latest
+      - name: Push docker image
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: docker push astefan93/cpp:latest
+
   UbuntuLatest:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+        config: [debug, release]
     steps:
       - name: Check out code
         uses: actions/checkout@v3
-      - name: Build docker images
-        run: docker build -t local -f .devcontainer/Dockerfile .
-      - name: Upload image
-        uses: ishworkh/docker-image-artifact-upload@v1
-        with:
-          image: "local:latest"
-
-  GCC:
-    needs: UbuntuLatest
-    strategy:
-      matrix:
-        config: [debug, release]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Download image
-        uses: ishworkh/docker-image-artifact-download@v1
-        with:
-          image: "local:latest"
       - name: Run container
-        run: docker run --name localContainer -idt --volume $PWD:/srv local
+        run: docker run --name localContainer -idt --volume $PWD:/srv astefan93/cpp:latest
       - name: Build
-        run: docker exec -w/srv localContainer sudo bazel build --config ${{ matrix.config }} ...
+        run: docker exec -w/srv localContainer sudo bazel build --config ${{matrix.compiler}}_${{ matrix.config }} ...
       - name: Generate compile commands
-        run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=${{ matrix.config }}
+        run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=${{matrix.compiler}}_${{ matrix.config }}
+      - name: Run tests
+        run: docker exec -w/srv localContainer sudo bazel test --config ${{matrix.compiler}}_${{ matrix.config }} --test_output=all ...
+      - name: Generate coverage report data
+        if: ${{ matrix.config=='debug' }}
+        run: docker exec -w/srv localContainer sudo bazel coverage --combined_report=lcov ...
+      # - name: Generate html format coverage report
+      #   run: docker exec -w/srv localContainer sudo genhtml --output genhtml "$(bazel info output_path)/_coverage/_coverage_report.dat"
       - name: IWYU
         run: docker exec -w/srv localContainer sudo bazel build --config=iwyu ...
       - name: cppcheck
         run: docker exec -w/srv localContainer sudo cppcheck src --enable=all --inconclusive --library=posix --project=compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
       - name: clang-tidy check
         run: docker exec -w/srv localContainer sudo clang-tidy src/applications/addressbook/addressbook.cpp
-      - name: Build docker images
-        run: docker commit localContainer gcclocal${{ matrix.config }}
-      - name: Stop container
-        run: docker stop localContainer
-      - name: Upload image
-        uses: ishworkh/docker-image-artifact-upload@v1
-        with:
-          image: "gcclocal${{ matrix.config }}:latest"
-
-  runTestsGCC:
-    needs: GCC
-    strategy:
-      matrix:
-        config: [debug, release]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Download image
-        uses: ishworkh/docker-image-artifact-download@v1
-        with:
-          image: "gcclocal${{ matrix.config }}:latest"
-      - name: Run container
-        run: docker run --name localContainer -idt --volume $PWD:/srv gcclocal${{ matrix.config }}
-      - name: Run tests
-        run: docker exec -w/srv localContainer sudo bazel test --config ${{ matrix.config }} --test_output=all ...
-      - name: Generate coverage report data
-        run: docker exec -w/srv localContainer sudo bazel coverage --combined_report=lcov ...
-      # - name: Generate html format coverage report
-      #   run: docker exec -w/srv localContainer sudo genhtml --output genhtml "$(bazel info output_path)/_coverage/_coverage_report.dat"
-      - name: Stop container
-        run: docker stop localContainer
-
-  Clang:
-    needs: UbuntuLatest
-    strategy:
-      matrix:
-        config: [debug, release]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Download image
-        uses: ishworkh/docker-image-artifact-download@v1
-        with:
-          image: "local:latest"
-      - name: Run container
-        run: docker run --name localContainer -idt --volume $PWD:/srv local
-      - name: Build
-        run: docker exec -w/srv localContainer sudo bazel build --config clang_${{ matrix.config }} ...
-      - name: Generate compile commands
-        run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=clang_${{ matrix.config }}
-      - name: IWYU
-        run: docker exec -w/srv localContainer sudo bazel build --config=iwyu ...
-      - name: cppcheck
-        run: docker exec -w/srv localContainer sudo cppcheck src --enable=all --inconclusive --library=posix --project=compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
-      - name: clang-tidy check
-        run: docker exec -w/srv localContainer sudo clang-tidy src/applications/addressbook/addressbook.cpp
-      - name: Build docker images
-        run: docker commit localContainer clanglocal${{ matrix.config }}
-      - name: Stop container
-        run: docker stop localContainer
-      - name: Upload image
-        uses: ishworkh/docker-image-artifact-upload@v1
-        with:
-          image: "clanglocal${{ matrix.config }}:latest"
-
-  runTestsClang:
-    needs: Clang
-    strategy:
-      matrix:
-        config: [debug, release]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Download image
-        uses: ishworkh/docker-image-artifact-download@v1
-        with:
-          image: "clanglocal${{ matrix.config }}:latest"
-      - name: Run container
-        run: docker run --name localContainer -idt --volume $PWD:/srv clanglocal${{ matrix.config }}
-      - name: Run tests
-        run: docker exec -w/srv localContainer sudo bazel test --config clang_${{ matrix.config }} --test_output=all ...
-      - name: Generate coverage report data
-        run: docker exec -w/srv localContainer sudo bazel coverage --combined_report=lcov ...
-      # - name: Generate html format coverage report
-      #   run: docker exec -w/srv localContainer sudo genhtml --output genhtml "$(bazel info output_path)/_coverage/_coverage_report.dat"
       - name: Stop container
         run: docker stop localContainer

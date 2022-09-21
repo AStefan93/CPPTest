@@ -1,5 +1,7 @@
-image:
-  file: .devcontainer/Dockerfile
+image: astefan93/cpp:latest
+tasks:
+  - command: bazel build --config clang_debug ... && bazel run @hedron_compile_commands//:refresh_all -- --config=clang_debug && bazel build --config=iwyu ...
+
 github:
   prebuilds:
     # enable for the master/default branch (defaults to true)
@@ -11,9 +13,9 @@ github:
     # enable for pull requests coming from forks (defaults to false)
     pullRequestsFromForks: true
     # add a "Review in Gitpod" button as a comment to pull requests (defaults to true)
-    addComment: true
+    addComment: false
     # add a "Review in Gitpod" button to pull requests (defaults to false)
-    addBadge: false
+    addBadge: true
     # add a label once the prebuild is ready to pull requests (defaults to false)
     addLabel: prebuilt-in-gitpod
 vscode:
@@ -31,3 +33,5 @@ vscode:
     - zxh404.vscode-proto3
     - redhat.vscode-xml
     - redhat.vscode-yaml
+    - cschleiden.vscode-github-actions
+    - TabNine.tabnine-vscode

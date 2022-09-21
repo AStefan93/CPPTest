@@ -19,7 +19,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
 # ********************************************************
 # * Anything else you want to do like clean up goes here *
 # ********************************************************
-RUN apt-get update && apt-get -y install build-essential cppcheck valgrind clang clangd clang-tidy clang-format lldb llvm gdb git vim\
+RUN apt-get update && apt-get -y install apt-utils build-essential cppcheck valgrind clang clangd clang-tidy clang-format lldb llvm gdb git vim\
     && apt-get -y install nodejs npm \
     && npm install -g @bazel/bazelisk \
     && apt-get -y install protobuf-compiler \
@@ -36,11 +36,6 @@ RUN wget -O /usr/bin/buildifier https://github.com/bazelbuild/buildtools/release
     && chmod +x /usr/bin/buildifier
 
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
-
-#Fix bazel compile commands generation extension
-WORKDIR /workspaces/CPPTest
-RUN ln -s bazel-out/../../../external
-RUN chown -R $USERNAME /workspaces/CPPTest
 
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME

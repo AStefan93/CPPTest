@@ -56,7 +56,7 @@ jobs:
       # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
       # If this step fails, then you should remove it and run the build manually (see below)
       - name: Autobuild
-        run: bazel build --config release ... && bazel run @hedron_compile_commands//:refresh_all
+        run: bazel build --config gcc_release ... && bazel run @hedron_compile_commands//:refresh_all -- --config=gcc_release
 
       # ℹ️ Command-line programs to run using the OS shell.
       # 📚 https://git.io/JvXDl

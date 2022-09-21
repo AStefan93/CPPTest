@@ -23,12 +23,12 @@ rules_proto_toolchains()
 # https://github.com/hedronvision/bazel-compile-commands-extractor
 http_archive(
     name = "hedron_compile_commands",
-    sha256 = "4b251a482a85de6c5cb0dc34c5671e73190b9ff348e9979fa2c033d81de0f928",
-    strip_prefix = "bazel-compile-commands-extractor-5bb5ff2f32d542a986033102af771aa4206387b9",
+    sha256 = "4deb7cd90ba69983ec7734c0dcc7071828ebdc430a69f82ddbccf698018b9c04",
+    strip_prefix = "bazel-compile-commands-extractor-5ceebcf367f51c6a18fffe726755951a43b50e45",
 
     # Replace the commit hash in both places (below) with the latest, rather than using the stale one here.
     # Even better, set up Renovate and let it do the work for you (see "Suggestion: Updates" in the README).
-    url = "https://github.com/hedronvision/bazel-compile-commands-extractor/archive/5bb5ff2f32d542a986033102af771aa4206387b9.tar.gz",
+    url = "https://github.com/hedronvision/bazel-compile-commands-extractor/archive/5ceebcf367f51c6a18fffe726755951a43b50e45.tar.gz",
     # When you first run this tool, it'll recommend a sha256 hash to put here with a message like: "DEBUG: Rule 'hedron_compile_commands' indicated that a canonical reproducible form can be obtained by modifying arguments sha256 = ..."
 )
 
@@ -49,10 +49,10 @@ git_repository(
 # gRPC
 http_archive(
     name = "com_github_grpc_grpc",
-    sha256 = "98a8c29cedd5e960b9fdd9c474402a46f90e1709e29cdfef02b271b579aadac9",
-    strip_prefix = "grpc-becab4418d908bbee4c902ae6b67c462e6428010",
+    sha256 = "086028c18c1d0d3e3c2a4049a4ed9a0d5299f15069d81f574721311de47e04a3",
+    strip_prefix = "grpc-bc4f98bb36f168b8f6846f82fdfff84616c2d6d7",
     urls = [
-        "https://github.com/grpc/grpc/archive/becab4418d908bbee4c902ae6b67c462e6428010.tar.gz",
+        "https://github.com/grpc/grpc/archive/bc4f98bb36f168b8f6846f82fdfff84616c2d6d7.tar.gz",
     ],
 )
 
