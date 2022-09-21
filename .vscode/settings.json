@@ -75,4 +75,7 @@
         "editor.defaultFormatter": "ms-azuretools.vscode-docker"
     },
     "workbench.editor.showTabs": true,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
 }
