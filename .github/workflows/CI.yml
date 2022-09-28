@@ -39,23 +39,24 @@ jobs:
 
   UbuntuLatest:
     runs-on: ubuntu-latest
+    needs: BuildImage
     strategy:
       matrix:
         compiler: [gcc, clang]
-        config: [debug, release]
+        configuration: [debug, release]
     steps:
       - name: Check out code
         uses: actions/checkout@v3
       - name: Run container
         run: docker run --name localContainer -idt --volume $PWD:/srv astefan93/cpp:latest
       - name: Build
-        run: docker exec -w/srv localContainer sudo bazel build --config ${{matrix.compiler}}_${{ matrix.config }} ...
+        run: docker exec -w/srv localContainer sudo bazel build --config ${{matrix.compiler}}_${{ matrix.configuration }} ...
       - name: Generate compile commands
-        run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=${{matrix.compiler}}_${{ matrix.config }}
+        run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=${{matrix.compiler}}_${{ matrix.configuration }}
       - name: Run tests
-        run: docker exec -w/srv localContainer sudo bazel test --config ${{matrix.compiler}}_${{ matrix.config }} --test_output=all ...
+        run: docker exec -w/srv localContainer sudo bazel test --config ${{matrix.compiler}}_${{ matrix.configuration }} --test_output=all ...
       - name: Generate coverage report data
-        if: ${{ matrix.config=='debug' }}
+        if: ${{ matrix.configuration=='debug' }}
         run: docker exec -w/srv localContainer sudo bazel coverage --combined_report=lcov ...
       # - name: Generate html format coverage report
       #   run: docker exec -w/srv localContainer sudo genhtml --output genhtml "$(bazel info output_path)/_coverage/_coverage_report.dat"

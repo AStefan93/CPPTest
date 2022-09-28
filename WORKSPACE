@@ -1,5 +1,6 @@
 # Standard Bazel Tools
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 # Protocol Buffers
 # rules_proto defines abstract rules for building Protocol Buffers.
@@ -37,8 +38,6 @@ load("@hedron_compile_commands//:workspace_setup.bzl", "hedron_compile_commands_
 hedron_compile_commands_setup()
 
 # Google Test
-load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
-
 git_repository(
     name = "googletest",
     commit = "e2239ee6043f73722e7aa812a459f54a28552929",
@@ -49,10 +48,10 @@ git_repository(
 # gRPC
 http_archive(
     name = "com_github_grpc_grpc",
-    sha256 = "086028c18c1d0d3e3c2a4049a4ed9a0d5299f15069d81f574721311de47e04a3",
-    strip_prefix = "grpc-bc4f98bb36f168b8f6846f82fdfff84616c2d6d7",
+    sha256 = "c4194e808b1342a7be7d9ca66008b871ddf954b357f533f3d731166c2fa197b4",
+    strip_prefix = "grpc-f69c64b2704350f261483429c5e39ac72dd90bbd",
     urls = [
-        "https://github.com/grpc/grpc/archive/bc4f98bb36f168b8f6846f82fdfff84616c2d6d7.tar.gz",
+        "https://github.com/grpc/grpc/archive/f69c64b2704350f261483429c5e39ac72dd90bbd.tar.gz",
     ],
 )
 
