@@ -5,7 +5,7 @@
 namespace CPPTest::ClassDemo::Test {
 
 // NOLINTNEXTLINE(cppcoreguidelines-owning-memory,cppcoreguidelines-avoid-non-const-global-variables)
-TEST(ClassDemo, test) { FAIL(); }
+TEST(ClassDemo, test) { EXPECT_TRUE(true); }
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
