@@ -26,16 +26,14 @@ RUN apt-get update && apt-get -y install apt-utils build-essential cppcheck valg
     && apt-get -y install wget \
     && apt-get -y install python3 \
     && apt-get -y install default-jdk \
-    && apt-get -y install lcov
-
-# Install latest git version
-RUN apt-get install software-properties-common -y && apt-add-repository ppa:git-core/ppa && apt-get update && apt-get install git -y
-
-#Install Buildifier and add to path
-RUN wget -O /usr/bin/buildifier https://github.com/bazelbuild/buildtools/releases/download/5.0.1/buildifier-linux-amd64 \
-    && chmod +x /usr/bin/buildifier
-
-RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
-
-# [Optional] Set the default user. Omit if you want to keep the default as root.
-USER $USERNAME
+    && apt-get -y install lcov \
+    #    
+    # Install latest git version
+    && apt-get install software-properties-common -y && apt-add-repository ppa:git-core/ppa && apt-get update && apt-get install git -y \
+    #
+    #Install Buildifier and add to path
+    && wget -O /usr/bin/buildifier https://github.com/bazelbuild/buildtools/releases/download/5.0.1/buildifier-linux-amd64 \
+    && chmod +x /usr/bin/buildifier \
+    #
+    # Clean up
+    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*

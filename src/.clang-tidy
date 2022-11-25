@@ -35,7 +35,8 @@ Checks: "-*,
     cppcoreguidelines-*,
     llvm-*,
     google-*,
-    bugprone-*"
+    bugprone-*,
+    misc-*"
 AnalyzeTemporaryDtors: false
 HeaderFilterRegex: "*"
 FormatStyle: file

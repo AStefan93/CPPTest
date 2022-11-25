@@ -78,4 +78,7 @@
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
+    "[starlark]": {
+        "editor.defaultFormatter": "BazelBuild.vscode-bazel"
+    },
 }
