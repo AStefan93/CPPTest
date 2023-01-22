@@ -10,6 +10,14 @@ This project is a basic GRPC client-server application demonstrating how GRPC se
 <br/>
 
 This function simply creates a new person with the name **John Doe**
+
+*   item 1
+    
+*   item 2
+    
+*   `📄 src/applications/addressbook/addressbook_server.cpp`
+    
+*   `📄 src/applications/addressbook/addressbook_client.cpp`
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 src/applications/addressbook/addressbook.cpp
 ```c++
@@ -22,7 +30,7 @@ This function simply creates a new person with the name **John Doe**
 
 <br/>
 
-<br/>
+<div align="center"><img src="https://media2.giphy.com/media/ezb5se6MmeHjyWscmL/giphy.gif?cid=d56c4a8b7cbkgwlh7gyh83o5svuphr0k0344kb9iv4pyuilb&rid=giphy.gif&ct=g" style="width:'50%'"/></div>
 
 <br/>
 
