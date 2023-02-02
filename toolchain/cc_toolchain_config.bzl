@@ -15,7 +15,7 @@ def _impl(ctx):
     tool_paths = [
         tool_path(
             name = "gcc",
-            path = "/usr/bin/clang",
+            path = "/usr/bin/clang-13",
         ),
         tool_path(
             name = "ld",
@@ -69,8 +69,7 @@ def _impl(ctx):
         ctx = ctx,
         features = features,
         cxx_builtin_include_directories = [
-            "/usr/lib/llvm-10/lib/clang/10.0.0/include",
-            "/usr/lib/llvm-14/lib/clang/14.0.0/include",
+            "/usr/lib/llvm-13/lib/clang/13.0.1/include",
             "/usr/include",
         ],
         toolchain_identifier = "local",
