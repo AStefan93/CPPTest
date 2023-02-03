@@ -19,7 +19,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
 # ********************************************************
 # * Anything else you want to do like clean up goes here *
 # ********************************************************
-RUN apt-get update && apt-get -y install apt-utils build-essential cppcheck valgrind clang clangd clang-tidy clang-format lldb llvm gdb git vim\
+RUN apt-get update && apt-get -y install apt-utils build-essential cppcheck valgrind clang-13 clangd clang-tidy clang-format lldb llvm gdb git vim\
     && apt-get -y install nodejs npm \
     && npm install -g @bazel/bazelisk \
     && apt-get -y install protobuf-compiler \
