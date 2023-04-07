@@ -48,10 +48,10 @@ git_repository(
 # gRPC
 http_archive(
     name = "com_github_grpc_grpc",
-    sha256 = "9676760a3a8b9294528e0d02cd9e0935ef929331a7663c9d447b4be222953af1",
-    strip_prefix = "grpc-2845a248d6e1f617bbe0ffcd851cb1818725cda3",
+    sha256 = "fb044abc28cba8cdae4f43b9828cda38bc05ee1adf3f924f0d001e40dadcec51",
+    strip_prefix = "grpc-aee41600f429dc92d44f40513447896276b3a065",
     urls = [
-        "https://github.com/grpc/grpc/archive/2845a248d6e1f617bbe0ffcd851cb1818725cda3.tar.gz",
+        "https://github.com/grpc/grpc/archive/aee41600f429dc92d44f40513447896276b3a065.tar.gz",
     ],
 )
 
