@@ -24,12 +24,12 @@ rules_proto_toolchains()
 # https://github.com/hedronvision/bazel-compile-commands-extractor
 http_archive(
     name = "hedron_compile_commands",
-    sha256 = "3cd0e49f0f4a6d406c1d74b53b7616f5e24f5fd319eafc1bf8eee6e14124d115",
-    strip_prefix = "bazel-compile-commands-extractor-3dddf205a1f5cde20faf2444c1757abe0564ff4c",
+    sha256 = "9d1ce53443747dd574a309fbe6774d1cfc94d20abdb7e7de1bb337f9437761bb",
+    strip_prefix = "bazel-compile-commands-extractor-86dbf526c56cebb2c3a060c09fe8c0458a694d23",
 
     # Replace the commit hash in both places (below) with the latest, rather than using the stale one here.
     # Even better, set up Renovate and let it do the work for you (see "Suggestion: Updates" in the README).
-    url = "https://github.com/hedronvision/bazel-compile-commands-extractor/archive/3dddf205a1f5cde20faf2444c1757abe0564ff4c.tar.gz",
+    url = "https://github.com/hedronvision/bazel-compile-commands-extractor/archive/86dbf526c56cebb2c3a060c09fe8c0458a694d23.tar.gz",
     # When you first run this tool, it'll recommend a sha256 hash to put here with a message like: "DEBUG: Rule 'hedron_compile_commands' indicated that a canonical reproducible form can be obtained by modifying arguments sha256 = ..."
 )
 
