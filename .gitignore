@@ -49,3 +49,6 @@ external
 
 # LCOV Coverage Report
 genhtml
+
+# CMake
+build
