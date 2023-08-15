@@ -51,6 +51,8 @@ jobs:
         run: docker run --name localContainer -idt --volume $PWD:/srv astefan93/cpp:latest
       - name: Build Bazel
         run: docker exec -w/srv localContainer sudo bazel build --config ${{matrix.compiler}}_${{ matrix.configuration }} ...
+      - name: Configure CMake
+        run: docker exec -w/srv localContainer sudo cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/clang-14 -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/clang++-14 -S/workspace/CPPTest -B/workspace/CPPTest/build -G "Unix Makefiles"
       - name: Build CMake
         run: docker exec -w/srv localContainer sudo cmake --build /workspace/CPPTest/build  --config Debug --target Tutorial -j 18 --
       - name: Generate compile commands
