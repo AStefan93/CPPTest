@@ -22,6 +22,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
 RUN apt-get update && apt-get -y install apt-utils build-essential cppcheck valgrind clang-13 clangd clang-tidy clang-format lldb llvm gdb git vim\
     && apt-get -y install nodejs npm \
     && npm install -g @bazel/bazelisk \
+    && apt-get -y install cmake \
     && apt-get -y install protobuf-compiler \
     && apt-get -y install wget \
     && apt-get -y install python3 \
