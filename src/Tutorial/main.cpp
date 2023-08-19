@@ -1,6 +1,7 @@
-#include <iostream>
+#include "Hello.hpp"
 
 int main(int /*argc*/, char* /*argv*/[]) {
-  std::cout << "Hello CMake!" << std::endl;
+  Hello hii;
+  hii.print();
   return 0;
 }
