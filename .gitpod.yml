@@ -37,3 +37,4 @@ vscode:
         - ms-python.python
         - JFrog.jfrog-vscode-extension
         - ms-vscode.cmake-tools
+        - KylinIDETeam.cmake-intellisence
