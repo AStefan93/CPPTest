@@ -26,8 +26,12 @@ RUN apt-get update && apt-get -y install apt-utils build-essential cppcheck valg
     && apt-get -y install protobuf-compiler \
     && apt-get -y install wget \
     && apt-get -y install python3 \
+    && apt-get -y install python3-pip \
     && apt-get -y install default-jdk \
     && apt-get -y install lcov \
+    #
+    # Install python packages
+    && pip3 install conan \
     #    
     # Install latest git version
     && apt-get install software-properties-common -y && apt-add-repository ppa:git-core/ppa && apt-get update && apt-get install git -y \

@@ -48,7 +48,7 @@
         "streambuf": "cpp",
         "typeinfo": "cpp"
     },
-    "testMate.cpp.test.executables": "{build,Build,BUILD,out,Out,OUT,bazel-out/k8-fastbuild/bin/src}/**/__main__/**/*{test,Test,TEST}*",
+    "testMate.cpp.test.executables": "{build/**/*,Build/**/*,BUILD/**/*,out/**/*,Out/**/*,OUT/**/*,bazel-out/k8-fastbuild/bin/src/**/__main__/**/*}/*{test,Test,TEST}*",
     "clangd.onConfigChanged": "restart",
     "bazel.buildifierFixOnFormat": true,
     "bazel.enableCodeLens": true,
@@ -80,5 +80,8 @@
     },
     "[starlark]": {
         "editor.defaultFormatter": "BazelBuild.vscode-bazel"
+    },
+    "[cmake]": {
+        "editor.defaultFormatter": "KylinIDETeam.cmake-intellisence"
     },
 }

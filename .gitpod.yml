@@ -1,5 +1,6 @@
 image: astefan93/cpp:latest
 tasks:
+    - init: conan install **/*/conanfile.txt --output-folder=build --build=missing --profile:build=conan/gcc_debug --profile:host=conan/gcc_debug
     - command: bazel build --config clang_debug ... && bazel run @hedron_compile_commands//:refresh_all -- --config=clang_debug && bazel build --config=iwyu ...
 
 github:
@@ -37,3 +38,5 @@ vscode:
         - ms-python.python
         - JFrog.jfrog-vscode-extension
         - ms-vscode.cmake-tools
+        - KylinIDETeam.cmake-intellisence
+        - twxs.cmake
