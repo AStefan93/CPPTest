@@ -52,8 +52,3 @@ genhtml
 
 # CMake
 build
-Testing/TAG
-Testing/Temporary/CTestCostData.txt
-Testing/Temporary/LastTest_20230831-2111.log
-Testing/20230831-2111/Test.xml
-Testing/Temporary/LastTest.log

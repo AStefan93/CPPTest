@@ -4,5 +4,5 @@
 
 namespace CPPTest::Tutorial::Test {
 // NOLINTNEXTLINE(cppcoreguidelines-owning-memory,cppcoreguidelines-avoid-non-const-global-variables)
-TEST(Tutorial, HelloWorldTest) { EXPECT_TRUE(true); }
+TEST(Tutorial, HelloWorldTest) { FAIL(); }
 }  // namespace CPPTest::Tutorial::Test
