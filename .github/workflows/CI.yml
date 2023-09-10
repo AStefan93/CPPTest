@@ -92,6 +92,6 @@ jobs:
       - name: cppcheck
         run: docker exec -w/srv localContainer sudo cppcheck src --enable=all --inconclusive --library=posix --project=build/compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
       - name: clang-tidy check
-        run: docker exec -w/srv localContainer sudo clang-tidy src/applications/addressbook/addressbook.cpp
+        run: docker exec -w/srv localContainer sudo clang-tidy -p build src/array/array.cpp
       - name: Stop container
         run: docker stop localContainer
