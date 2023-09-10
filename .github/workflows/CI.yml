@@ -37,7 +37,7 @@ jobs:
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: docker push astefan93/cpp:latest
 
-  UbuntuLatest:
+  UbuntuLatestBazel:
     runs-on: ubuntu-latest
     needs: BuildImage
     strategy:
@@ -49,17 +49,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Run container
         run: docker run --name localContainer -idt --volume $PWD:/srv astefan93/cpp:latest
-      - name: Install Conan Packages
-        run: docker exec -w/srv localContainer sudo conan install **/*/conanfile.txt --output-folder=build --build=missing --profile:build=conan/gcc_${{ matrix.configuration }} --profile:host=conan/gcc_${{ matrix.configuration }}
       - name: Build Bazel
         run: docker exec -w/srv localContainer sudo bazel build --config ${{matrix.compiler}}_${{ matrix.configuration }} ...
-      - name: Configure CMake
-        run: docker exec -w/srv localContainer sudo cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=${{ matrix.configuration }} -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/clang-14 -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/clang++-14 -S/srv -B/srv/build -G "Unix Makefiles"
-      - name: Build CMake
-        run: docker exec -w/srv localContainer sudo cmake --build /srv/build  --config ${{ matrix.configuration }} --target all -j 18 --
       - name: Generate compile commands
         run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=${{matrix.compiler}}_${{ matrix.configuration }}
-      - name: Run tests
+      - name: Run Bazel tests
         run: docker exec -w/srv localContainer sudo bazel test --config ${{matrix.compiler}}_${{ matrix.configuration }} --test_output=all ...
       - name: Generate coverage report data
         if: ${{ matrix.configuration=='debug' }}
@@ -72,5 +66,30 @@ jobs:
         run: docker exec -w/srv localContainer sudo cppcheck src --enable=all --inconclusive --library=posix --project=compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
       - name: clang-tidy check
         run: docker exec -w/srv localContainer sudo clang-tidy src/applications/addressbook/addressbook.cpp
+      - name: Stop container
+        run: docker stop localContainer
+
+  UbuntuLatestCMake:
+    runs-on: ubuntu-latest
+    needs: BuildImage
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+        configuration: [Debug, Release]
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Run container
+        run: docker run --name localContainer -idt --volume $PWD:/srv astefan93/cpp:latest
+      - name: Configure CMake
+        run: docker exec -w/srv localContainer sudo cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=${{ matrix.configuration }} -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/clang-14 -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/clang++-14 -S/srv -B/srv/build -G "Unix Makefiles"
+      - name: Build CMake
+        run: docker exec -w/srv localContainer sudo cmake --build /srv/build  --config ${{ matrix.configuration }} --target all -j 18 --
+      - name: Run CMake tests
+        run: docker exec -w/srv localContainer sudo ctest -j18 -T test --test-dir build -C ${{ matrix.configuration }} -V
+      - name: cppcheck
+        run: docker exec -w/srv localContainer sudo cppcheck src --enable=all --inconclusive --library=posix --project=build/compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
+      - name: clang-tidy check
+        run: docker exec -w/srv localContainer sudo clang-tidy -p build src/array/array.cpp
       - name: Stop container
         run: docker stop localContainer

@@ -20,16 +20,16 @@ include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
 find_package(GTest REQUIRED)
 
 set(SOURCES
-    Hello.cpp
+    array.cpp
 )
 
-add_library(hello_library
+add_library(array
     STATIC
     ${SOURCES}
 )
 
-add_executable(hello_library_test Hello_test.cpp)
-target_link_libraries(hello_library_test hello_library GTest::gtest GTest::gtest_main)
-gtest_add_tests(hello_library_test
+add_executable(array_test array_test.cpp)
+target_link_libraries(array_test array GTest::gtest GTest::gtest_main GTest::gmock_main)
+gtest_add_tests(array_test
     "" AUTO
 )
