@@ -55,8 +55,6 @@ jobs:
         run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=${{matrix.compiler}}_${{ matrix.configuration }}
       - name: Run Bazel tests
         run: docker exec -w/srv localContainer sudo bazel test --config ${{matrix.compiler}}_${{ matrix.configuration }} --test_output=all ...
-      - name: Run CMake tests
-        run: docker exec -w/srv localContainer sudo ctest -j18 -T test --test-dir build -C ${{ matrix.configuration }} -V
       - name: Generate coverage report data
         if: ${{ matrix.configuration=='debug' }}
         run: docker exec -w/srv localContainer sudo bazel coverage --combined_report=lcov ...
