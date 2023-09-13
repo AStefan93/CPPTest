@@ -84,4 +84,7 @@
     "[cmake]": {
         "editor.defaultFormatter": "KylinIDETeam.cmake-intellisence"
     },
+    "clangd.arguments": [
+        "-p build"
+    ],
 }
