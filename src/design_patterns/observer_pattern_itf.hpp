@@ -10,7 +10,7 @@ class ObserverItf {
   ObserverItf &operator=(ObserverItf &&) = delete;
   virtual ~ObserverItf() = default;
 
-  void virtual update() = 0;
+  void virtual update(const std::string &subjectState) = 0;
 
  protected:
   ObserverItf() = default;
