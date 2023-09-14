@@ -85,7 +85,10 @@
         "editor.defaultFormatter": "KylinIDETeam.cmake-intellisence"
     },
     "clangd.arguments": [
-        "--compile-commands-dir=build/src"
+        "--compile-commands-dir=build"
     ],
     "cmake.configureOnOpen": true,
+    "cmake.ctestArgs": [
+        "--test-dir build/src"
+    ],
 }
