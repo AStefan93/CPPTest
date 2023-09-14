@@ -85,6 +85,7 @@
         "editor.defaultFormatter": "KylinIDETeam.cmake-intellisence"
     },
     "clangd.arguments": [
-        "-p build"
+        "--compile-commands-dir=build"
     ],
+    "cmake.configureOnOpen": true,
 }
