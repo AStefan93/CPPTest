@@ -86,7 +86,7 @@ jobs:
       - name: Build CMake
         run: docker exec -w/srv localContainer sudo cmake --build /srv/build  --config ${{ matrix.configuration }} --target all -j 18 --
       - name: Run CMake tests
-        run: docker exec -w/srv localContainer sudo ctest -j18 -T test --test-dir build/src -C ${{ matrix.configuration }} -V
+        run: docker exec -w/srv localContainer sudo ctest -j18 -T test --test-dir build/src --no-tests=error -C ${{ matrix.configuration }} -V
       - name: cppcheck
         run: docker exec -w/srv localContainer sudo cppcheck src --enable=all --inconclusive --library=posix --project=build/compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
       - name: clang-tidy check
