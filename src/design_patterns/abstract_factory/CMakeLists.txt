@@ -2,6 +2,7 @@ find_package(GTest REQUIRED)
 
 set(SOURCES
     abstract_factory.cpp
+    maze.cpp
 )
 
 add_library(abstract_factory

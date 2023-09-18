@@ -5,25 +5,26 @@
 		"settings": {
 			"terminal.integrated.defaultProfile.linux": "bash"
 		},
-		// Add the IDs of extensions you want installed when the container is created.
-		"extensions": [
-			"bazelbuild.vscode-bazel",
-			"jeff-hykin.better-cpp-syntax",
-			"cschlosser.doxdocgen",
-			"github.vscode-pull-request-github",
-			"llvm-vs-code-extensions.vscode-clangd",
-			"eamodio.gitlens",
-			"xaver.clang-format",
-			"ms-vscode.cpptools",
-			"actboy168.tasks",
-			"vscode-icons-team.vscode-icons",
-			"matepek.vscode-catch2-test-adapter",
-			"zxh404.vscode-proto3",
-			"redhat.vscode-xml",
-			"redhat.vscode-yaml",
-			"github.copilot",
-			"ms-vscode.cmake-tools"
-		]
+		"vscode": {
+			"extensions": [
+				"Codeium.codeium",
+				"bazelbuild.vscode-bazel",
+				"jeff-hykin.better-cpp-syntax",
+				"cschlosser.doxdocgen",
+				"github.vscode-pull-request-github",
+				"llvm-vs-code-extensions.vscode-clangd",
+				"eamodio.gitlens",
+				"xaver.clang-format",
+				"ms-vscode.cpptools",
+				"actboy168.tasks",
+				"vscode-icons-team.vscode-icons",
+				"matepek.vscode-catch2-test-adapter",
+				"zxh404.vscode-proto3",
+				"redhat.vscode-xml",
+				"redhat.vscode-yaml",
+				"ms-vscode.cmake-tools"
+			]
+		}
 	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
