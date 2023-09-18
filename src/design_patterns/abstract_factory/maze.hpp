@@ -1,4 +1,5 @@
 #include <array>
+#include <map>
 #include <memory>
 #include <vector>
 
@@ -6,20 +7,20 @@ namespace CPPTest::DesignPatterns {
 
 enum class Direction { north, south, west, east };
 
-class MapSite {
+class MapSide {
  public:
-  MapSite(const MapSite&) = default;
-  MapSite(MapSite&&) = delete;
-  MapSite& operator=(const MapSite&) = default;
-  MapSite& operator=(MapSite&&) = delete;
-  virtual ~MapSite() = default;
-  virtual void enter() = 0;
+  MapSide(const MapSide&) = default;
+  MapSide(MapSide&&) = delete;
+  MapSide& operator=(const MapSide&) = default;
+  MapSide& operator=(MapSide&&) = delete;
+  virtual ~MapSide() = default;
+  virtual int enter() = 0;
 
  protected:
-  MapSite() = default;
+  MapSide() = default;
 };
 
-class Room : public MapSite {
+class Room : public MapSide {
  public:
   Room(const Room&) = default;
   Room(Room&&) = delete;
@@ -29,14 +30,20 @@ class Room : public MapSite {
   Room() = default;
 
   explicit Room(int roomNumber);
-  [[nodiscard]] std::shared_ptr<MapSite> get_side(
+  [[nodiscard]] std::shared_ptr<MapSide> get_side(
       const Direction& direction) const;
-  void set_side(const Direction& direction, std::shared_ptr<MapSite> site);
-  void enter() override;
+  void set_side(const Direction& direction,
+                const std::shared_ptr<MapSide>& side);
+  int enter() override;
 
  private:
   int m_roomNumber{0};
-  std::array<std::shared_ptr<MapSite>, 4> m_sides;
+  std::map<Direction, std::shared_ptr<MapSide>> m_sides = {
+      {Direction::north, nullptr},
+      {Direction::south, nullptr},
+      {Direction::west, nullptr},
+      {Direction::east, nullptr},
+  };
 };
 
 class MazeItf {
@@ -62,14 +69,14 @@ class Maze : public MazeItf {
   Maze& operator=(const Maze&) = default;
   Maze& operator=(Maze&&) = delete;
   ~Maze() override = default;
-  Maze() = default;
+  Maze();
 
   void add_room(int roomNumber) override;
   [[nodiscard]] std::shared_ptr<Room> room_number(
       int roomNumber) const override;
 
  private:
-  std::vector<std::shared_ptr<Room>> m_rooms;
+  std::map<int, std::shared_ptr<Room>> m_rooms;
 };
 
 class MazeFactory {};

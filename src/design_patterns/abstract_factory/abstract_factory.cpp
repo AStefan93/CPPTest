@@ -11,25 +11,31 @@ MazeGame::MazeGame(const std::shared_ptr<MazeGameFactoryItf>& factory)
 };
 void MazeGame::move_up() {
   m_player->update();
-  m_playerPosition = m_maze.;
+  m_playerPosition = m_maze->room_number(m_playerPosition)
+                         ->get_side(Direction::north)
+                         ->enter();
   update_state();
 };
 
 void MazeGame::move_down() {
   m_player->update();
-  ++m_playerPosition;
+  m_playerPosition = m_maze->room_number(m_playerPosition)
+                         ->get_side(Direction::south)
+                         ->enter();
   update_state();
 };
 
 void MazeGame::move_left() {
   m_player->update();
-  ++m_playerPosition;
+  m_playerPosition =
+      m_maze->room_number(m_playerPosition)->get_side(Direction::west)->enter();
   update_state();
 }
 
 void MazeGame::move_right() {
   m_player->update();
-  ++m_playerPosition;
+  m_playerPosition =
+      m_maze->room_number(m_playerPosition)->get_side(Direction::east)->enter();
   update_state();
 }
 
