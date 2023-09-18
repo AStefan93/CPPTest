@@ -91,4 +91,6 @@
     "cmake.ctestArgs": [
         "--test-dir build/src"
     ],
+    "git.fetchOnPull": true,
+    "git.autoStash": true,
 }
