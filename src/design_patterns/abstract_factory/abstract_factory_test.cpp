@@ -37,6 +37,7 @@ class TestBiggerMazeGame : public ::testing::Test {
   MazeGame m_cut;
 };
 
+// NOLINTNEXTLINE
 TEST_F(TestBiggerMazeGame, MazeGameUpLeft) {
   m_cut = MazeGame(std::make_shared<SecondMazeGameFactoryTest>());
   m_cut.move_up();
@@ -45,7 +46,7 @@ TEST_F(TestBiggerMazeGame, MazeGameUpLeft) {
   m_cut.move_left();
   EXPECT_TRUE(m_cut.is_finished());
 }
-
+// NOLINTNEXTLINE
 TEST_F(TestBiggerMazeGame, MazeGameLeft) {
   m_cut = MazeGame(std::make_shared<SecondMazeGameFactoryTest>());
   m_cut.move_up();
