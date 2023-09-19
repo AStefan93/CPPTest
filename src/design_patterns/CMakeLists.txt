@@ -1,2 +1,3 @@
 add_subdirectory(observer_pattern)
 add_subdirectory(abstract_factory)
+add_subdirectory(command_pattern)
