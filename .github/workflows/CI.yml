@@ -78,7 +78,7 @@ jobs:
         configuration: [Debug, Release]
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Run container
         run: docker run --name localContainer -idt --volume $PWD:/srv astefan93/cpp:latest
       - name: Configure CMake
