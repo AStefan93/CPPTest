@@ -45,24 +45,6 @@ git_repository(
     shallow_since = "1623433346 -0700",
 )
 
-# gRPC
-http_archive(
-    name = "com_github_grpc_grpc",
-    sha256 = "bead37fd9f93c35696853145bfb7f698eecae3ba8482b7b922f53a43297729ce",
-    strip_prefix = "grpc-c09a008414bd5cc01ff940bae5b3a0966a7fac19",
-    urls = [
-        "https://github.com/grpc/grpc/archive/c09a008414bd5cc01ff940bae5b3a0966a7fac19.tar.gz",
-    ],
-)
-
-load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-
-grpc_deps()
-
-load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
-
-grpc_extra_deps()
-
 # Include what you use
 git_repository(
     name = "com_github_storypku_bazel_iwyu",
