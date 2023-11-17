@@ -6,7 +6,6 @@ namespace CPPTest::DesignPatterns {
 
 class File {
  public:
-  File() = default;
   virtual ~File() = default;
   File(const File&) = default;
   File& operator=(const File&) = default;
@@ -16,6 +15,9 @@ class File {
   virtual void paste() = 0;
   virtual void cut() = 0;
   virtual void copy() = 0;
+
+ protected:
+  File() = default;
 };
 
 class Paste : public Command {
