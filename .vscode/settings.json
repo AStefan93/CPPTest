@@ -55,9 +55,6 @@
     "terminal.integrated.defaultProfile.linux": "bash",
     "editor.defaultFormatter": "xaver.clang-format",
     "editor.formatOnSave": true,
-    "C_Cpp.codeAnalysis.clangTidy.checks.enabled": [
-        "*"
-    ],
     "git.allowForcePush": true,
     "doxdocgen.generic.dateTemplate": "",
     "doxdocgen.file.copyrightTag": [],
@@ -93,4 +90,5 @@
     ],
     "git.fetchOnPull": true,
     "git.autoStash": true,
+    "cmake.options.statusBarVisibility": "compact",
 }
