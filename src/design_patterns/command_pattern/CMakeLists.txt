@@ -11,7 +11,7 @@ add_library(command_pattern
 
 include(GoogleTest)
 add_executable(command_pattern_test command_pattern_test.cpp)
-target_link_libraries(command_pattern_test command_pattern GTest::gtest GTest::gtest_main)
+target_link_libraries(command_pattern_test command_pattern GTest::gtest GTest::gtest_main GTest::gmock_main)
 gtest_add_tests(command_pattern_test
     "" AUTO
 )

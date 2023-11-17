@@ -55,9 +55,6 @@
     "terminal.integrated.defaultProfile.linux": "bash",
     "editor.defaultFormatter": "xaver.clang-format",
     "editor.formatOnSave": true,
-    "C_Cpp.codeAnalysis.clangTidy.checks.enabled": [
-        "*"
-    ],
     "git.allowForcePush": true,
     "doxdocgen.generic.dateTemplate": "",
     "doxdocgen.file.copyrightTag": [],
@@ -74,7 +71,6 @@
     "[dockerfile]": {
         "editor.defaultFormatter": "ms-azuretools.vscode-docker"
     },
-    "workbench.editor.showTabs": "multiple",
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
@@ -93,4 +89,5 @@
     ],
     "git.fetchOnPull": true,
     "git.autoStash": true,
+    "cmake.options.statusBarVisibility": "compact",
 }
