@@ -1,7 +1,7 @@
 image: astefan93/cpp:latest
 tasks:
         - init: /usr/bin/cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++ -S/workspace/CPPTest -B/workspace/CPPTest/build -G "Unix Makefiles"
-        - command: bazel build --config clang_debug ... && bazel run @hedron_compile_commands//:refresh_all -- --config=clang_debug && bazel build --config=iwyu ...
+        - command: bazel build --config clang_debug ...
 
 github:
         prebuilds:

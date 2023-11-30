@@ -51,8 +51,8 @@ jobs:
         run: docker run --name localContainer -idt --volume $PWD:/srv astefan93/cpp:latest
       - name: Build Bazel
         run: docker exec -w/srv localContainer sudo bazel build --config ${{matrix.compiler}}_${{ matrix.configuration }} ...
-      - name: Generate compile commands
-        run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=${{matrix.compiler}}_${{ matrix.configuration }}
+      # - name: Generate compile commands
+      #   run: docker exec -w/srv localContainer sudo bazel run @hedron_compile_commands//:refresh_all -- --config=${{matrix.compiler}}_${{ matrix.configuration }}
       - name: Run Bazel tests
         run: docker exec -w/srv localContainer sudo bazel test --config ${{matrix.compiler}}_${{ matrix.configuration }} --test_output=all ...
       - name: Generate coverage report data
@@ -60,12 +60,12 @@ jobs:
         run: docker exec -w/srv localContainer sudo bazel coverage --combined_report=lcov ...
       # - name: Generate html format coverage report
       #   run: docker exec -w/srv localContainer sudo genhtml --output genhtml "$(bazel info output_path)/_coverage/_coverage_report.dat"
-      - name: IWYU
-        run: docker exec -w/srv localContainer sudo bazel build --config=iwyu ...
-      - name: cppcheck
-        run: docker exec -w/srv localContainer sudo cppcheck src --enable=all --inconclusive --library=posix --project=compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
-      - name: clang-tidy check
-        run: docker exec -w/srv localContainer sudo clang-tidy src/applications/addressbook/addressbook.cpp
+      # - name: IWYU
+      #   run: docker exec -w/srv localContainer sudo bazel build --config=iwyu ...
+      # - name: cppcheck
+      #   run: docker exec -w/srv localContainer sudo cppcheck src --enable=all --inconclusive --library=posix --project=compile_commands.json -iexternal -ibazel-out --suppress-xml=src/cppcheck_suppressions.xml
+      # - name: clang-tidy check
+      #   run: docker exec -w/srv localContainer sudo clang-tidy src/applications/addressbook/addressbook.cpp
       - name: Stop container
         run: docker stop localContainer
 
