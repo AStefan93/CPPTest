@@ -1,11 +1,9 @@
 find_package(GTest REQUIRED)
 
 set(TARGET array)
-
 set(SOURCES
     array.cpp
 )
-
 add_library(${TARGET}
     STATIC
     ${SOURCES}

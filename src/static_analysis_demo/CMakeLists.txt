@@ -1,17 +1,18 @@
 find_package(GTest REQUIRED)
 
+set(TARGET classDemo)
 set(SOURCES
     classDemo.cpp
 )
-
-add_library(classDemo
+add_library(${TARGET}
     STATIC
     ${SOURCES}
 )
+target_compile_options(${TARGET} PRIVATE -Wall -Wextra -Wpedantic)
 
 include(GoogleTest)
-add_executable(classDemo_test classDemo_test.cpp)
-target_link_libraries(classDemo_test classDemo GTest::gtest GTest::gtest_main GTest::gmock_main)
-gtest_add_tests(classDemo_test
+add_executable(${TARGET}_test classDemo_test.cpp)
+target_link_libraries(${TARGET}_test ${TARGET} GTest::gtest GTest::gtest_main GTest::gmock_main)
+gtest_add_tests(${TARGET}_test
     "" AUTO
 )
