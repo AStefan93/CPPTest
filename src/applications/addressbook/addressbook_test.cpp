@@ -1,11 +1,11 @@
 #include "addressbook.hpp"
 
+#include <gmock/gmock-matchers.h>
 #include <google/protobuf/message_lite.h>  // for ShutdownProtobufLibrary
 
 #include <memory>  // for allocator, make_unique, unique_ptr
 #include <string>  // for string
 
-#include "gmock/gmock.h"  // for MakePredicateFormatterFromMatcher, EXPECT_THAT
 #include "gtest/gtest.h"  // for TestInfo, InitGoogleTest, Message, RUN_ALL_TESTS, TEST_F, TestPartResult
 namespace CPPTest::Addressbook::Test {
 

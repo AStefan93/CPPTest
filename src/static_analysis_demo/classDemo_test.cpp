@@ -2,8 +2,8 @@
 
 // #include <memory>
 
+#include "classDemoInterface.hpp"  // for IFoo
 #include "gtest/gtest.h"
-#include "src/static_analysis_demo/classDemoInterface.hpp"  // for IFoo
 
 namespace CPPTest::ClassDemo::Test {
 
