@@ -1,3 +1,13 @@
+# install protobuf
+conan_cmake_configure(REQUIRES protobuf/3.21.12
+    GENERATORS CMakeToolchain CMakeDeps)
+conan_cmake_install(PATH_OR_REFERENCE .
+    OUTPUT_FOLDER ${PROJECT_BINARY_DIR}
+    BUILD missing
+    PROFILE_BUILD ${PROJECT_SOURCE_DIR}/conan/GCC${CMAKE_BUILD_TYPE}
+    PROFILE_HOST ${PROJECT_SOURCE_DIR}/conan/GCC${CMAKE_BUILD_TYPE}
+    REMOTE conancenter)
+
 # Generate proto lib
 find_package(protobuf REQUIRED)
 set(PROTO_DIR ${PROJECT_SOURCE_DIR}/external_interface/addressbook)
