@@ -20,7 +20,6 @@ github:
                 addLabel: prebuilt-in-gitpod
 vscode:
         extensions:
-                - bazelbuild.vscode-bazel
                 - jeff-hykin.better-cpp-syntax
                 - cschlosser.doxdocgen
                 - github.vscode-pull-request-github

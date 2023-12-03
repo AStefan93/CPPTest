@@ -21,7 +21,6 @@ RUN groupadd --gid $USER_GID $USERNAME \
 # ********************************************************
 RUN apt-get update && apt-get -y install apt-utils build-essential cppcheck valgrind clang-13 clangd clang-tidy clang-format lldb llvm gdb git vim\
     && apt-get -y install nodejs npm \
-    && npm install -g @bazel/bazelisk \
     && apt-get -y install cmake \
     && apt-get -y install protobuf-compiler \
     && apt-get -y install wget \
@@ -35,10 +34,6 @@ RUN apt-get update && apt-get -y install apt-utils build-essential cppcheck valg
     #    
     # Install latest git version
     && apt-get install software-properties-common -y && apt-add-repository ppa:git-core/ppa && apt-get update && apt-get install git -y \
-    #
-    #Install Buildifier and add to path
-    && wget -O /usr/bin/buildifier https://github.com/bazelbuild/buildtools/releases/download/5.0.1/buildifier-linux-amd64 \
-    && chmod +x /usr/bin/buildifier \
     #
     # Clean up
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
