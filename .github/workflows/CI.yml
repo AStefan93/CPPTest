@@ -50,7 +50,7 @@ jobs:
       - name: Run container
         run: docker run --name localContainer -idt --volume $PWD:/srv astefan93/cpp:latest
       - name: Configure CMake
-        run: docker exec -w/srv localContainer sudo cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=${{ matrix.configuration }} -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/clang-14 -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/clang++-14 -S/srv -B/srv/build -G "Unix Makefiles"
+        run: docker exec -w/srv localContainer sudo cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=${{ matrix.configuration }} -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/${{ matrix.compiler }} -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/${{ matrix.compiler }} -S/srv -B/srv/build -G "Unix Makefiles"
       - name: Build CMake
         run: docker exec -w/srv localContainer sudo cmake --build /srv/build  --config ${{ matrix.configuration }} --target all -j 18 --
       - name: Run CMake tests
