@@ -39,6 +39,7 @@ bazel-testlogs
 .clangd
 compile_commands.json
 external
+llvm*.sh*
 
 # Protocol Buffers
 *.pb.*
