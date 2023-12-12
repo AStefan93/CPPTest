@@ -2,6 +2,7 @@ VERSION=17
 wget https://apt.llvm.org/llvm.sh \
 && chmod +x llvm.sh \
 && sudo ./llvm.sh $VERSION all
+sudo rm llvm.sh
 
 sudo ln -s -f /usr/bin/clang-$VERSION /usr/bin/clang
 sudo ln -s -f /usr/bin/clang++-$VERSION /usr/bin/clang++

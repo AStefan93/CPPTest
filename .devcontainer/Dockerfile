@@ -44,7 +44,7 @@ RUN apt-get update && apt-get -y install apt-utils build-essential cppcheck valg
 
 # Install latest llvm
 COPY install_llvm.sh .
-RUN install_llvm.sh
+RUN ./install_llvm.sh
 
- # Clean up
+# Clean up
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
