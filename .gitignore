@@ -39,6 +39,7 @@ bazel-testlogs
 .clangd
 compile_commands.json
 external
+llvm*.sh*
 
 # Protocol Buffers
 *.pb.*
@@ -51,6 +52,7 @@ external
 genhtml
 
 # CMake
+cmake*.sh*
 build
 Testing/TAG
 Testing/Temporary/CTestCostData.txt

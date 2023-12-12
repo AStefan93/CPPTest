@@ -19,10 +19,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
 # ********************************************************
 # * Anything else you want to do like clean up goes here *
 # ********************************************************
-RUN apt-get update && apt-get -y install apt-utils build-essential cppcheck valgrind clang-13 clangd clang-tidy clang-format lldb llvm gdb git vim\
+RUN apt-get update && apt-get -y install apt-utils build-essential cppcheck valgrind clangd gdb git vim\
     && apt-get -y install nodejs npm \
-    && npm install -g @bazel/bazelisk \
-    && apt-get -y install cmake \
     && apt-get -y install protobuf-compiler \
     && apt-get -y install wget \
     && apt-get -y install python3 \
@@ -36,9 +34,17 @@ RUN apt-get update && apt-get -y install apt-utils build-essential cppcheck valg
     # Install latest git version
     && apt-get install software-properties-common -y && apt-add-repository ppa:git-core/ppa && apt-get update && apt-get install git -y \
     #
-    #Install Buildifier and add to path
-    && wget -O /usr/bin/buildifier https://github.com/bazelbuild/buildtools/releases/download/5.0.1/buildifier-linux-amd64 \
-    && chmod +x /usr/bin/buildifier \
-    #
-    # Clean up
-    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+    # Install latest cmake
+    && wget https://github.com/Kitware/CMake/releases/download/v3.28.0/cmake-3.28.0-Linux-x86_64.sh -q -O /tmp/cmake-install.sh \
+    && chmod u+x /tmp/cmake-install.sh \
+    && sudo mkdir /opt/cmake-3.28.0 \
+    && sudo /tmp/cmake-install.sh --skip-license --prefix=/opt/cmake-3.28.0 \
+    && rm /tmp/cmake-install.sh \
+    && sudo ln -s /opt/cmake-3.28.0/bin/* /usr/local/bin
+
+# Install latest llvm
+COPY .devcontainer/install_llvm.sh .
+RUN ./install_llvm.sh
+
+# Clean up
+RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
