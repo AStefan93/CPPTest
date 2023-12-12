@@ -43,7 +43,7 @@ RUN apt-get update && apt-get -y install apt-utils build-essential cppcheck valg
     && sudo ln -s /opt/cmake-3.28.0/bin/* /usr/local/bin
 
 # Install latest llvm
-COPY install_llvm.sh .
+COPY .devcontainer/install_llvm.sh .
 RUN ./install_llvm.sh
 
 # Clean up
