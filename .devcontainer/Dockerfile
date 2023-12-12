@@ -39,8 +39,7 @@ RUN apt-get update && apt-get -y install apt-utils build-essential cppcheck valg
     && chmod +x llvm.sh \
     && sudo ./llvm.sh 17 \
     # Install latest cmake
-    && wget https://github.com/Kitware/CMake/releases/download/v3.28.0/cmake-3.28.0-Linux-x86_64.sh \
-    && -q -O /tmp/cmake-install.sh \
+    && wget https://github.com/Kitware/CMake/releases/download/v3.28.0/cmake-3.28.0-Linux-x86_64.sh -q -O /tmp/cmake-install.sh \
     && chmod u+x /tmp/cmake-install.sh \
     && sudo mkdir /opt/cmake-3.28.0 \
     && sudo /tmp/cmake-install.sh --skip-license --prefix=/opt/cmake-3.28.0 \
