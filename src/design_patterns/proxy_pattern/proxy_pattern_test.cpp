@@ -4,15 +4,15 @@
 #include "image_proxy.hpp"
 #include "gtest/gtest.h"
 #include <memory>
-namespace CPPTest::DesignPatterns::Test {
+#include <string>
 
-const std::string DATA_ROOT_PATH = "../../../../test_files/";
+namespace CPPTest::DesignPatterns::Test {
 
 class AProxyPattern : public ::testing::Test {
 public:
   AProxyPattern() {
-    m_graphics = std::make_shared<Graphics>(
-        std::make_shared<ImageProxy>(DATA_ROOT_PATH + "image_0.txt"));
+    m_graphics =
+        std::make_shared<Graphics>(std::make_shared<ImageProxy>("image_0.txt"));
   }
 
 protected:
@@ -20,14 +20,16 @@ protected:
   std::shared_ptr<GraphicsItf> m_graphics;
 };
 
-TEST_F(AProxyPattern, WithAProxyLoadsImageOnlyWhenDrawn) { m_graphics->draw(); }
+TEST_F(AProxyPattern, WithAProxyLoadsImageOnlyWhenDrawn) {
+  EXPECT_NO_THROW(m_graphics->draw());
+}
 TEST_F(AProxyPattern, WithMultipleProxiesDoesNotLoadFiles) {
 
   constexpr auto number_of_files = 20'000;
   for (auto i = 0; i < number_of_files; ++i) {
     const std::shared_ptr<ImageItf> image_proxy =
-        std::make_shared<ImageProxy>(DATA_ROOT_PATH + "image_0.txt");
-    m_graphics->add_file(image_proxy);
+        std::make_shared<ImageProxy>("image_0.txt");
+    EXPECT_NO_THROW(m_graphics->add_file(image_proxy));
   }
 }
 
@@ -36,23 +38,23 @@ TEST_F(AProxyPattern, WithMultipleProxiesLoadsAllFilesWhenDrawn) {
   constexpr auto number_of_files = 20'000;
   for (auto i = 0; i < number_of_files; ++i) {
     const std::shared_ptr<ImageItf> image_proxy =
-        std::make_shared<ImageProxy>(DATA_ROOT_PATH + "image_0.txt");
-    m_graphics->add_file(image_proxy);
+        std::make_shared<ImageProxy>("image_0.txt");
+    EXPECT_NO_THROW(m_graphics->add_file(image_proxy));
   }
-  m_graphics->draw();
+  EXPECT_NO_THROW(m_graphics->draw());
 }
 
 class AnImage : public ::testing::Test {
 public:
-  AnImage() {
-    m_image = std::make_shared<Image>(DATA_ROOT_PATH + "image_0.txt");
-  }
+  AnImage() { m_image = std::make_shared<Image>("image_0.txt"); }
 
 protected:
   // NOLINTNEXTLINE: (misc-non-private-member-variables-in-classes)
-  std::shared_ptr<ImageItf> m_image;
+  std::shared_ptr<Image> m_image;
 };
 
-TEST_F(AnImage, LoadsImageOnlyWhenDrawn) { EXPECT_NO_THROW(m_image->draw()); }
+TEST_F(AnImage, LoadsImageOnlyWhenDrawn) {
+  EXPECT_NO_THROW(m_image->draw("Dummy text."));
+}
 
 } // namespace CPPTest::DesignPatterns::Test

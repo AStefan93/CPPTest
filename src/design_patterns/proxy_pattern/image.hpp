@@ -9,6 +9,7 @@ class Image : public ImageItf {
 public:
   explicit Image(std::string filename);
   void draw() override;
+  void draw(const std::string &text);
 
 private:
   std::string m_filename;
