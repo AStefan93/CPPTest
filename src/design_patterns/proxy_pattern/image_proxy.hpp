@@ -1,6 +1,5 @@
 #pragma once
 
-#include "image.hpp"
 #include "image_itf.hpp"
 #include <memory>
 #include <string>
@@ -12,6 +11,6 @@ public:
 
 private:
   std::string m_filename;
-  std::shared_ptr<Image> m_image;
+  std::unique_ptr<ImageItf> m_image;
 };
 } // namespace CPPTest::DesignPatterns

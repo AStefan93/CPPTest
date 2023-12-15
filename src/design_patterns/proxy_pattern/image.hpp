@@ -1,6 +1,7 @@
 #pragma once
 
 #include "image_itf.hpp"
+#include <fstream>
 #include <string>
 
 namespace CPPTest::DesignPatterns {
@@ -11,5 +12,6 @@ public:
 
 private:
   std::string m_filename;
+  std::fstream m_file;
 };
 } // namespace CPPTest::DesignPatterns
