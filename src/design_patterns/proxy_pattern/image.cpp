@@ -3,7 +3,7 @@
 
 namespace CPPTest::DesignPatterns {
 Image::Image(std::string filename) : m_filename{std::move(filename)} {
-  m_file.open(m_filename);
+  m_file.open(m_filename, std::fstream::app);
   if (!m_file.is_open())
     throw std::runtime_error(
         "Could not open file: " + m_filename +
