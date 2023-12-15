@@ -6,11 +6,13 @@
 #include <memory>
 namespace CPPTest::DesignPatterns::Test {
 
+const std::string DATA_ROOT_PATH = "../../../../test_files/";
+
 class AProxyPattern : public ::testing::Test {
 public:
   AProxyPattern() {
-    m_graphics = std::make_shared<Graphics>(std::make_shared<ImageProxy>(
-        "/workspace/CPPTest/test_files/image_0.txt"));
+    m_graphics = std::make_shared<Graphics>(
+        std::make_shared<ImageProxy>(DATA_ROOT_PATH + "image_0.txt"));
   }
 
 protected:
@@ -23,8 +25,8 @@ TEST_F(AProxyPattern, WithMultipleProxiesDoesNotLoadFiles) {
 
   constexpr auto number_of_files = 20'000;
   for (auto i = 0; i < number_of_files; ++i) {
-    const std::shared_ptr<ImageItf> image_proxy = std::make_shared<ImageProxy>(
-        "/workspace/CPPTest/test_files/image_0.txt");
+    const std::shared_ptr<ImageItf> image_proxy =
+        std::make_shared<ImageProxy>(DATA_ROOT_PATH + "image_0.txt");
     m_graphics->add_file(image_proxy);
   }
 }
@@ -33,8 +35,8 @@ TEST_F(AProxyPattern, WithMultipleProxiesLoadsAllFilesWhenDrawn) {
 
   constexpr auto number_of_files = 20'000;
   for (auto i = 0; i < number_of_files; ++i) {
-    const std::shared_ptr<ImageItf> image_proxy = std::make_shared<ImageProxy>(
-        "/workspace/CPPTest/test_files/image_0.txt");
+    const std::shared_ptr<ImageItf> image_proxy =
+        std::make_shared<ImageProxy>(DATA_ROOT_PATH + "image_0.txt");
     m_graphics->add_file(image_proxy);
   }
   m_graphics->draw();
@@ -43,8 +45,7 @@ TEST_F(AProxyPattern, WithMultipleProxiesLoadsAllFilesWhenDrawn) {
 class AnImage : public ::testing::Test {
 public:
   AnImage() {
-    m_image =
-        std::make_shared<Image>("/workspace/CPPTest/test_files/image_0.txt");
+    m_image = std::make_shared<Image>(DATA_ROOT_PATH + "image_0.txt");
   }
 
 protected:
