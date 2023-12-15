@@ -10,10 +10,5 @@ Image::Image(std::string filename) : m_filename{std::move(filename)} {
         "\n Current read state: " + std::to_string(m_file.rdstate()));
 }
 
-void Image::draw() {
-  if (m_file.is_open())
-    m_file << "Writing this to a file.\n";
-  else
-    throw std::runtime_error("File is not open.");
-}
+void Image::draw() {}
 } // namespace CPPTest::DesignPatterns

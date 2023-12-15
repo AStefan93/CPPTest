@@ -21,28 +21,22 @@ protected:
 TEST_F(AProxyPattern, WithAProxyLoadsImageOnlyWhenDrawn) { m_graphics->draw(); }
 TEST_F(AProxyPattern, WithMultipleProxiesDoesNotLoadFiles) {
 
-  const std::shared_ptr<ImageItf> image_proxy1 =
-      std::make_shared<ImageProxy>("/workspace/CPPTest/test_files/image_1.txt");
-  const std::shared_ptr<ImageItf> image_proxy2 =
-      std::make_shared<ImageProxy>("/workspace/CPPTest/test_files/image_2.txt");
-  const std::shared_ptr<ImageItf> image_proxy3 =
-      std::make_shared<ImageProxy>("/workspace/CPPTest/test_files/image_3.txt");
-  m_graphics->add_file(image_proxy1);
-  m_graphics->add_file(image_proxy2);
-  m_graphics->add_file(image_proxy3);
+  constexpr auto number_of_files = 20'000;
+  for (auto i = 0; i < number_of_files; ++i) {
+    const std::shared_ptr<ImageItf> image_proxy = std::make_shared<ImageProxy>(
+        "/workspace/CPPTest/test_files/image_0.txt");
+    m_graphics->add_file(image_proxy);
+  }
 }
 
 TEST_F(AProxyPattern, WithMultipleProxiesLoadsAllFilesWhenDrawn) {
 
-  const std::shared_ptr<ImageItf> image_proxy1 =
-      std::make_shared<ImageProxy>("/workspace/CPPTest/test_files/image_1.txt");
-  const std::shared_ptr<ImageItf> image_proxy2 =
-      std::make_shared<ImageProxy>("/workspace/CPPTest/test_files/image_2.txt");
-  const std::shared_ptr<ImageItf> image_proxy3 =
-      std::make_shared<ImageProxy>("/workspace/CPPTest/test_files/image_3.txt");
-  m_graphics->add_file(image_proxy1);
-  m_graphics->add_file(image_proxy2);
-  m_graphics->add_file(image_proxy3);
+  constexpr auto number_of_files = 20'000;
+  for (auto i = 0; i < number_of_files; ++i) {
+    const std::shared_ptr<ImageItf> image_proxy = std::make_shared<ImageProxy>(
+        "/workspace/CPPTest/test_files/image_0.txt");
+    m_graphics->add_file(image_proxy);
+  }
   m_graphics->draw();
 }
 
