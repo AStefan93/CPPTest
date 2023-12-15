@@ -7,7 +7,7 @@ if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
 endif()
 
 include(${PROJECT_BINARY_DIR}/conan.cmake)
-conan_cmake_configure(REQUIRES gtest/cci.20210126
+conan_cmake_configure(REQUIRES gtest/1.14.0
     GENERATORS CMakeToolchain CMakeDeps)
 conan_cmake_install(PATH_OR_REFERENCE .
     OUTPUT_FOLDER ${PROJECT_BINARY_DIR}
