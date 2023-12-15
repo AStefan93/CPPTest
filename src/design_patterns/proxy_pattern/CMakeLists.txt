@@ -2,7 +2,9 @@ find_package(GTest REQUIRED)
 
 set(TARGET proxy_pattern)
 set(SOURCES
-    ${TARGET}.cpp
+    image.cpp
+    image_proxy.cpp
+    graphics.cpp
 )
 add_library(${TARGET}
     STATIC
