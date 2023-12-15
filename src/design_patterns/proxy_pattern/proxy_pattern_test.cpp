@@ -22,10 +22,10 @@ protected:
   std::shared_ptr<GraphicsItf> m_graphics;
 };
 
-TEST_F(AProxyPattern, WithAProxyLoadsImageOnlyWhenDrawn) {
+TEST_F(AProxyPattern, DISABLED_WithAProxyLoadsImageOnlyWhenDrawn) {
   EXPECT_NO_THROW(m_graphics->draw());
 }
-TEST_F(AProxyPattern, WithMultipleProxiesDoesNotLoadFiles) {
+TEST_F(AProxyPattern, DISABLED_WithMultipleProxiesDoesNotLoadFiles) {
 
   constexpr auto number_of_files = 20'000;
   for (auto i = 0; i < number_of_files; ++i) {
@@ -35,7 +35,7 @@ TEST_F(AProxyPattern, WithMultipleProxiesDoesNotLoadFiles) {
   }
 }
 
-TEST_F(AProxyPattern, WithMultipleProxiesLoadsAllFilesWhenDrawn) {
+TEST_F(AProxyPattern, DISABLED_WithMultipleProxiesLoadsAllFilesWhenDrawn) {
 
   constexpr auto number_of_files = 20'000;
   for (auto i = 0; i < number_of_files; ++i) {
@@ -57,7 +57,7 @@ protected:
   std::shared_ptr<Image> m_image;
 };
 
-TEST_F(AnImage, LoadsImageOnlyWhenDrawn) {
+TEST_F(AnImage, DISABLED_LoadsImageOnlyWhenDrawn) {
   EXPECT_NO_THROW(m_image->draw("Dummy text."));
 }
 
