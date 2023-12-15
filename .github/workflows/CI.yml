@@ -48,12 +48,12 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
       - name: Run container
-        run: docker run --name localContainer -idt --volume $PWD:/srv astefan93/cpp:latest
+        run: docker run --name localContainer -idt --volume $PWD:/workspace/CPPTest astefan93/cpp:latest
       - name: Configure CMake
-        run: docker exec -w/srv localContainer sudo cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=${{ matrix.configuration }} -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/${{ matrix.compiler }} -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/${{ matrix.compiler }}++ -S/srv -B/srv/build -G "Unix Makefiles"
+        run: docker exec -w/workspace/CPPTest localContainer sudo cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=${{ matrix.configuration }} -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/${{ matrix.compiler }} -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/${{ matrix.compiler }}++ -S/workspace/CPPTest -B/workspace/CPPTest/build -G "Unix Makefiles"
       - name: Build CMake
-        run: docker exec -w/srv localContainer sudo cmake --build /srv/build  --config ${{ matrix.configuration }} --target all -j 18 --
+        run: docker exec -w/workspace/CPPTest localContainer sudo cmake --build /workspace/CPPTest/build  --config ${{ matrix.configuration }} --target all -j 18 --
       - name: Run CMake tests
-        run: docker exec -w/srv localContainer sudo ctest -j18 -T test --test-dir build/src --no-tests=error -C ${{ matrix.configuration }} -V
+        run: docker exec -w/workspace/CPPTest localContainer sudo ctest -j18 -T test --test-dir build/src --no-tests=error -C ${{ matrix.configuration }} -V
       - name: Stop container
         run: docker stop localContainer
