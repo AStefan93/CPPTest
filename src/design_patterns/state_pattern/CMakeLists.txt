@@ -2,7 +2,7 @@ find_package(GTest REQUIRED)
 
 set(TARGET state_pattern)
 set(SOURCES
-    ${TARGET}.cpp
+    TCPConnection.cpp
 )
 add_library(${TARGET}
     STATIC

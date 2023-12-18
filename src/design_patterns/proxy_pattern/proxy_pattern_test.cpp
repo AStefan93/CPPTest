@@ -37,7 +37,7 @@ TEST_F(AProxyPattern, WithMultipleProxiesDoesNotLoadFiles) {
 
 TEST_F(AProxyPattern, WithMultipleProxiesLoadsAllFilesWhenDrawn) {
 
-  constexpr auto number_of_files = 1000;
+  constexpr auto number_of_files = 1000; // becomes more obvious at 20'000
   for (auto i = 0; i < number_of_files; ++i) {
     const std::shared_ptr<ImageItf> image_proxy =
         std::make_shared<ImageProxy>("image_0.txt");
