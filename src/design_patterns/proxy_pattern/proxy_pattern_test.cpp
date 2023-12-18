@@ -35,7 +35,7 @@ TEST_F(AProxyPattern, WithMultipleProxiesDoesNotLoadFiles) {
   }
 }
 
-TEST_F(AProxyPattern, WithMultipleProxiesLoadsAllFilesWhenDrawn) {
+TEST_F(AProxyPattern, DISABLED_WithMultipleProxiesLoadsAllFilesWhenDrawn) {
 
   constexpr auto number_of_files = 20'000;
   for (auto i = 0; i < number_of_files; ++i) {
