@@ -4,7 +4,7 @@
 namespace CPPTest::DesignPatterns {
 class TCPOpen : public TCPStateItf {
 public:
-  void open() override;
-  void close() override;
+  void open(TCPConnection *connection) override;
+  void close(TCPConnection *connection) override;
 };
 } // namespace CPPTest::DesignPatterns

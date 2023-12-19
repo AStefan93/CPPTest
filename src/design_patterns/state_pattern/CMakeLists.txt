@@ -3,6 +3,8 @@ find_package(GTest REQUIRED)
 set(TARGET state_pattern)
 set(SOURCES
     TCPConnection.cpp
+    TCPClosed.cpp
+    TCPOpen.cpp
 )
 add_library(${TARGET}
     STATIC
