@@ -7,11 +7,9 @@
 namespace CPPTest::DesignPatterns {
 
 class TCPStateItf;
-class TCPOpen;
-class TCPClosed;
 enum class State;
 
-class TCPConnection : public std::enable_shared_from_this<TCPConnection> {
+class TCPConnection {
 
 public:
   TCPConnection();
