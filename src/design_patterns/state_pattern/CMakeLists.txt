@@ -5,6 +5,7 @@ set(SOURCES
     TCPConnection.cpp
     TCPClosed.cpp
     TCPOpen.cpp
+    TCPState.cpp
 )
 add_library(${TARGET}
     STATIC

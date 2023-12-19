@@ -1,8 +1,8 @@
 #pragma once
-#include "TCPStateItf.hpp"
+#include "TCPState.hpp"
 
 namespace CPPTest::DesignPatterns {
-class TCPOpen : public TCPStateItf {
+class TCPOpen : public TCPState {
 public:
   void open(TCPConnection *connection) override;
   void close(TCPConnection *connection) override;

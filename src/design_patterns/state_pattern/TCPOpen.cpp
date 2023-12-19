@@ -6,7 +6,7 @@ namespace CPPTest::DesignPatterns {
 void TCPOpen::open(TCPConnection *const /* connection */) {}
 void TCPOpen::close(TCPConnection *const connection) {
   // send commands to close the connection
-  connection->change_state(connection->CLOSED);
+  change_state(connection, connection->CLOSED);
 }
 
 } // namespace CPPTest::DesignPatterns

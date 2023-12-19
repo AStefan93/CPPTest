@@ -2,11 +2,10 @@
 
 #include "TCPClosed.hpp"
 #include "TCPOpen.hpp"
-#include "TCPStateItf.hpp"
+#include "TCPState.hpp"
 #include <memory>
 namespace CPPTest::DesignPatterns {
 
-class TCPStateItf;
 enum class State;
 
 class TCPConnection {
@@ -15,15 +14,14 @@ public:
   TCPConnection();
   void open();
   void close();
-  std::shared_ptr<TCPStateItf> get_state();
+  std::shared_ptr<TCPState> get_state();
 
-  std::shared_ptr<TCPStateItf> CLOSED = std::make_shared<TCPClosed>();
-  std::shared_ptr<TCPStateItf> OPEN = std::make_shared<TCPOpen>();
+  std::shared_ptr<TCPState> CLOSED = std::make_shared<TCPClosed>();
+  std::shared_ptr<TCPState> OPEN = std::make_shared<TCPOpen>();
 
 private:
-  void change_state(const std::shared_ptr<TCPStateItf> &new_state);
-  friend class TCPClosed;
-  friend class TCPOpen;
-  std::shared_ptr<TCPStateItf> m_state;
+  friend class TCPState;
+  void change_state(const std::shared_ptr<TCPState> &new_state);
+  std::shared_ptr<TCPState> m_state;
 };
 } // namespace CPPTest::DesignPatterns
