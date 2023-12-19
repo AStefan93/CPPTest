@@ -6,8 +6,6 @@ class TCPConnection;
 
 class TCPStateItf {
 public:
-  enum class State { Closed, Closing, Open, Opening };
-
   TCPStateItf(const TCPStateItf &) = default;
   TCPStateItf(TCPStateItf &&) = delete;
   TCPStateItf &operator=(const TCPStateItf &) = default;
