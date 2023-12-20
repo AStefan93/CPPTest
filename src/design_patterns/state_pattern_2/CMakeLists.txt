@@ -4,7 +4,9 @@ set(TARGET state_pattern_2)
 set(SOURCES
     TCPConnection.cpp
     TCPClosed.cpp
-    TCPOpened.cpp
+    TCPIdle.cpp
+    TCPRunning.cpp
+    TCPPaused.cpp
 )
 add_library(${TARGET}
     STATIC
