@@ -4,6 +4,7 @@ namespace CPPTest::DesignPatterns {
 
 void TCPClosed::close(const Transition & /*transition*/,
                       const Behaviour & /*behaviour*/) {}
+// NOLINTNEXTLINE
 void TCPClosed::open(const Transition &transition, const Behaviour &behaviour) {
   behaviour();
   transition();
