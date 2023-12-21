@@ -4,10 +4,18 @@
 namespace CPPTest::DesignPatterns {
 class TCPIdle : public TCPState {
 public:
-  void open(const Transition &transition, const Behaviour &behaviour) override;
-  void close(const Transition &transition, const Behaviour &behaviour) override;
-  void start(const Transition &transition, const Behaviour &behaviour) override;
-  void stop(const Transition &transition, const Behaviour &behaviour) override;
+  TCPIdle(Transition start_transition, Transition close_transition,
+          Behaviour start_behaviour, Behaviour close_behaviour);
+  void open() override;
+  void close() override;
+  void start() override;
+  void pause() override;
   State get_state() override;
+
+private:
+  Transition m_start_transition;
+  Transition m_close_transition;
+  Behaviour m_start_behaviour;
+  Behaviour m_close_behaviour;
 };
 } // namespace CPPTest::DesignPatterns

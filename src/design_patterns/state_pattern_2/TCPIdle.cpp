@@ -1,22 +1,24 @@
 #include "TCPIdle.hpp"
 
+#include <utility>
+
 namespace CPPTest::DesignPatterns {
-
-void TCPIdle::open(const Transition & /*transition*/,
-                   const Behaviour & /*behaviour*/) {}
-// NOLINTNEXTLINE
-void TCPIdle::close(const Transition &transition, const Behaviour &behaviour) {
-  behaviour();
-  transition();
+TCPIdle::TCPIdle(Transition start_transition, Transition close_transition,
+                 Behaviour start_behaviour, Behaviour close_behaviour)
+    : m_start_transition(std::move(start_transition)),
+      m_close_transition(std::move(close_transition)),
+      m_start_behaviour(std::move(start_behaviour)),
+      m_close_behaviour(std::move(close_behaviour)) {}
+void TCPIdle::open() {}
+void TCPIdle::close() {
+  m_close_behaviour();
+  m_close_transition();
 }
-// NOLINTNEXTLINE
-void TCPIdle::start(const Transition &transition, const Behaviour &behaviour) {
-  behaviour();
-  transition();
+void TCPIdle::start() {
+  m_start_behaviour();
+  m_start_transition();
 }
-
-void TCPIdle::stop(const Transition & /*transition*/,
-                   const Behaviour & /*behaviour*/) {}
+void TCPIdle::pause() {}
 TCPIdle::State TCPIdle::get_state() { return State::IDLE; }
 
 } // namespace CPPTest::DesignPatterns

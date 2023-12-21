@@ -1,7 +1,6 @@
 #include "TCPConnection.hpp"
 #include "TCPState.hpp"
 #include "gtest/gtest.h"
-#include <stdexcept>
 
 namespace CPPTest::DesignPatterns::Test {
 
@@ -56,13 +55,13 @@ TEST_F(ATCPConnection, WithClosedStateWhenStartCalledExpectThrow) {
 
 TEST_F(ATCPConnection, WithClosedStateWhenStopCalledExpectThrow) {
   m_cut.close();
-  EXPECT_THROW(m_cut.stop(), TCPState::WrongState);
+  EXPECT_THROW(m_cut.pause(), TCPState::WrongState);
   EXPECT_EQ(m_cut.get_state(), TCPState::State::CLOSED);
 }
 
 TEST_F(ATCPConnection, WhenIdleAndWhenStopCalledExpectIdle) {
   m_cut.open();
-  EXPECT_NO_THROW(m_cut.stop());
+  EXPECT_NO_THROW(m_cut.pause());
   EXPECT_EQ(m_cut.get_state(), TCPState::State::IDLE);
 }
 
@@ -82,7 +81,7 @@ TEST_F(ATCPConnection, WhenRunningAndWhenStartCalledExpectRunning) {
 TEST_F(ATCPConnection, WhenRunningAndWhenStopCalledExpectPaused) {
   m_cut.open();
   m_cut.start();
-  EXPECT_NO_THROW(m_cut.stop());
+  EXPECT_NO_THROW(m_cut.pause());
   EXPECT_EQ(m_cut.get_state(), TCPState::State::PAUSED);
 }
 
@@ -96,7 +95,7 @@ TEST_F(ATCPConnection, WhenRunningAndWhenCloseCalledExpectClosed) {
 TEST_F(ATCPConnection, WhenPausedAndWhenCloseCalledExpectClosed) {
   m_cut.open();
   m_cut.start();
-  m_cut.stop();
+  m_cut.pause();
   EXPECT_NO_THROW(m_cut.close());
   EXPECT_EQ(m_cut.get_state(), TCPState::State::CLOSED);
 }
@@ -104,7 +103,7 @@ TEST_F(ATCPConnection, WhenPausedAndWhenCloseCalledExpectClosed) {
 TEST_F(ATCPConnection, WhenPausedAndWhenStartCalledExpectRunning) {
   m_cut.open();
   m_cut.start();
-  m_cut.stop();
+  m_cut.pause();
   EXPECT_NO_THROW(m_cut.start());
   EXPECT_EQ(m_cut.get_state(), TCPState::State::RUNNING);
 }

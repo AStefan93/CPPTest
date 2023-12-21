@@ -18,14 +18,10 @@ public:
   TCPState &operator=(TCPState &&) = delete;
   virtual ~TCPState() = default;
 
-  virtual void open(const Transition &transition,
-                    const Behaviour &behaviour) = 0;
-  virtual void close(const Transition &transition,
-                     const Behaviour &behaviour) = 0;
-  virtual void start(const Transition &transition,
-                     const Behaviour &behaviour) = 0;
-  virtual void stop(const Transition &transition,
-                    const Behaviour &behaviour) = 0;
+  virtual void open() = 0;
+  virtual void close() = 0;
+  virtual void start() = 0;
+  virtual void pause() = 0;
   virtual State get_state() = 0;
 
   class WrongState : public std::runtime_error {
