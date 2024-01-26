@@ -3,7 +3,7 @@
 
 #include <string>
 class Hello {
- public:
+public:
   static std::string hello_world();
 };
 
