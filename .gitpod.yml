@@ -38,3 +38,5 @@ vscode:
                 - ms-vscode.cmake-tools
                 - KylinIDETeam.cmake-intellisence
                 - twxs.cmake
+                - statelyai.stately-vscode
+                - twxs.cmake
