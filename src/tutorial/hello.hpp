@@ -1,10 +1,7 @@
-#ifndef __HELLO_H__
-#define __HELLO_H__
+#pragma once
 
 #include <string>
 class Hello {
 public:
   static std::string hello_world();
 };
-
-#endif
